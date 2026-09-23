@@ -1,0 +1,2509 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22g%22%20x1%3D%220%22%20y1%3D%220%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%232f6bff%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%236f4bff%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Crect%20width%3D%2232%22%20height%3D%2232%22%20rx%3D%227%22%20fill%3D%22url(%23g)%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M6.5%2010.8l2.2%202.2%204.2-4.4%22%20stroke-width%3D%222.6%22%2F%3E%3Cpath%20d%3D%22M6.5%2020.2l2.2%202.2%204.2-4.4%22%20stroke-width%3D%222.6%22%2F%3E%3Cpath%20d%3D%22M17%2011h9M17%2021h9%22%20stroke-width%3D%222.4%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E">
+<link rel="alternate icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACwElEQVR4nOxXz08TQRT+drplo4BYhSjGUImYeCJy8VcMlAQDVzUmxhiltXL0H9AgEj14pucuWKMeTDD+OKqNGtsYL0ZUjNEUQkRBEyi22912d5zZtksr1ZAtSTn0S2czk/nxvnnve6+7YjgcpqggRP7weDwCKgB+eTE/CIVCq/aEqqrX/X7/MOtqKBMWAcrMH+nqwdambf9ZThF5+Qwz07FLwWDQ7fP5/JwP1oYARUKloHEduvGPxQ4KNU3R3t4Ol2vLGVkebfF6+3vZVAo2QZYJGNAyFEmN4nfKQA2jtqdZREujwxzzprCm69lItbXtRl9fb6csy5NsuBE2YXnAMCjYz/TE9s0Eza7slOQU0NFag4lpFdy0ruuIRCJm4xAEwR0Mygmfz2tLyEUh4HA3ObFpw8qzDBaWTCaDjgPd6OzugdMhMONMAEoSjx/cg10UeMAwlfj1u8ZCoZdcTJjFJR4KpgPCjDvYgzDBmHvLJcA9YOSabpTOSE4rrS/PiQ4CSaCW98oiwG9BcxqgxuoOpIRCqq2PDQxcaIVN/EWAmrHOe5RRgU7TiKdnWbqIqBMbIRLJ2qxpRnjvDrEbZaAoBDRHhCt9KT2HT/EneD0/BuLMirLBsRMdrpNorTsMidSPevY1eFEmrDpgeiCrQ8wqk4j+kvFm4aZlnGNRn8GLnwGEps4O5Y0HAgH3yEjAtggKChE/g2Je/Yx3i+P4kgiX3MDKVf+tY0+v8v7HWdp16OjpWDkiLPAAq4DaAiYWHmIqGS25mPnCc+d4dIz3Lz46f+7+5I2wmTnGGmQBL8XRH3cxQ94z4a38kyNU2HX7xKsp3j81fvDKnPZhSKFzeP5NLLyHfQKKooC8rUUL9hctYBeMDQ5ettJsePiaLEygPz9OCilIkgS7EPhLwbp4IakUqgSqBKoEqgSqBNYHgUp+ov8BAAD//09GUY4AAAAGSURBVAMABQJUiciL7OYAAAAASUVORK5CYII=">
+<meta name="theme-color" content="#2f6bff">
+<title>我的待辦事項</title>
+<style>
+/* ============================================================
+   Design Tokens
+   ============================================================ */
+:root{
+  --bg:#f4f6f9;
+  --surface:#ffffff;
+  --surface-2:#fafbfd;
+  --line:#e3e8ef;
+  --line-2:#eef2f7;
+  --text:#1c2430;
+  --text-2:#5a6979;
+  --text-3:#93a1b0;
+  --accent:#2f6bff;
+  --accent-soft:#eaf0ff;
+  --danger:#e5484d;
+  --danger-soft:#fdeced;
+  --warn:#f08c1a;
+  --warn-soft:#fdf1e2;
+  --ok:#12a37a;
+  --ok-soft:#e5f6f1;
+  --p-high:#e5484d;
+  --p-med:#f0a01a;
+  --p-low:#4b90f7;
+  --r-s:8px; --r-m:12px; --r-l:16px;
+  --shadow-1:0 1px 2px rgba(20,30,50,.05), 0 1px 3px rgba(20,30,50,.05);
+  --shadow-2:0 4px 16px rgba(20,30,50,.10);
+  --shadow-3:0 18px 48px rgba(20,30,50,.22);
+  --surface-3:#f2f5f9;
+  --line-3:#cbd5e1;
+  --focus:#b9cdff;
+  --hover:#eef1f6;
+  --chip-bg:#eef2f8; --chip-fg:#5c6b7d; --chip-line:#e4eaf2;
+  --done-bg:#eff2f6; --done-bg-hover:#e9edf3;
+  --sk-1:#eef1f5; --sk-2:#e3e8ef;
+  --scroll:#ccd4de; --scroll-hover:#b3bec9;
+  --tint-over:#fff8f8; --tint-over-line:#f2b9bc;
+  --tint-today:#fffbf4; --tint-today-line:#f5d6ac;
+  --soon-bg:#fffbe8; --soon-line:#f2e6bd; --soon-fg:#9a7b16;
+  --today-fg:#c56f0a;
+  --danger-line:#f8d5d7; --warn-line:#f7e2c4; --ok-line:#c9ebe0;
+  --ok-fg:#0d7a5c; --warn-fg:#a06510;
+  --accent-line:#d6e2ff; --accent-soft2:#dde8ff;
+  --banner-1:#eef3ff; --banner-2:#f7faff; --banner-fg:#28405f;
+  --toast-bg:#1e2734;
+  --bw:1px;
+  --line-ctrl:#e3e8ef;
+  color-scheme:light;
+}
+/* ============================================================
+   深色模式：data-theme="dark" 強制，或未指定時跟隨系統
+   ============================================================ */
+:root[data-theme="dark"],
+:root:not([data-theme="light"]):not([data-theme="dark"]) {}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151b; --surface:#1a2029; --surface-2:#202834; --surface-3:#28313d;
+    --line:#7d90a6; --line-2:#3c4a59; --line-3:#93a5ba;
+    --text:#e7edf5; --text-2:#a6b4c5; --text-3:#71808f;
+    --accent:#6d97ff; --accent-soft:#20304f; --accent-line:#456ba8; --accent-soft2:#2a3c66;
+    --danger:#ff7378; --danger-soft:#3d2124; --danger-line:#8a444a;
+    --warn:#f5a94a; --warn-soft:#3e2f18; --warn-line:#8a6832; --warn-fg:#f3bd7c;
+    --ok:#34cc9f; --ok-soft:#14382e; --ok-line:#2f7d67; --ok-fg:#6fe0bc;
+    --p-high:#ff6b70; --p-med:#f2a13d; --p-low:#6a9dff;
+    --hover:#2a3340;
+    --chip-bg:#2b3744; --chip-fg:#b3c1d1; --chip-line:#4a5a6b;
+    --done-bg:#1c232c; --done-bg-hover:#222b36;
+    --sk-1:#212a35; --sk-2:#2b3542;
+    --scroll:#3a4552; --scroll-hover:#4a5766;
+    --tint-over:#2a1a1c; --tint-over-line:#93494f;
+    --tint-today:#2a2312; --tint-today-line:#8d6a35;
+    --soon-bg:#37301a; --soon-line:#6d5f32; --soon-fg:#e2cb8c;
+    --today-fg:#f5b779;
+    --focus:#3f6bd6;
+    --banner-1:#1c2740; --banner-2:#181f2c; --banner-fg:#c3d4ef;
+    --toast-bg:#2f3a49;
+    --shadow-1:0 1px 2px rgba(0,0,0,.30), 0 1px 3px rgba(0,0,0,.24);
+    --shadow-2:0 4px 16px rgba(0,0,0,.42);
+    --shadow-3:0 18px 48px rgba(0,0,0,.60);
+    --line-ctrl:#7d90a6;
+    --bw:2px;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151b; --surface:#1a2029; --surface-2:#202834; --surface-3:#28313d;
+  --line:#7d90a6; --line-2:#3c4a59; --line-3:#93a5ba;
+  --text:#e7edf5; --text-2:#a6b4c5; --text-3:#71808f;
+  --accent:#6d97ff; --accent-soft:#20304f; --accent-line:#456ba8; --accent-soft2:#2a3c66;
+  --danger:#ff7378; --danger-soft:#3d2124; --danger-line:#8a444a;
+  --warn:#f5a94a; --warn-soft:#3e2f18; --warn-line:#8a6832; --warn-fg:#f3bd7c;
+  --ok:#34cc9f; --ok-soft:#14382e; --ok-line:#2f7d67; --ok-fg:#6fe0bc;
+  --p-high:#ff6b70; --p-med:#f2a13d; --p-low:#6a9dff;
+  --hover:#2a3340;
+  --chip-bg:#2b3744; --chip-fg:#b3c1d1; --chip-line:#4a5a6b;
+  --done-bg:#1c232c; --done-bg-hover:#222b36;
+  --sk-1:#212a35; --sk-2:#2b3542;
+  --scroll:#3a4552; --scroll-hover:#4a5766;
+  --tint-over:#2a1a1c; --tint-over-line:#93494f;
+  --tint-today:#2a2312; --tint-today-line:#8d6a35;
+  --soon-bg:#37301a; --soon-line:#6d5f32; --soon-fg:#e2cb8c;
+  --today-fg:#f5b779;
+  --focus:#3f6bd6;
+  --banner-1:#1c2740; --banner-2:#181f2c; --banner-fg:#c3d4ef;
+  --toast-bg:#2f3a49;
+  --shadow-1:0 1px 2px rgba(0,0,0,.30), 0 1px 3px rgba(0,0,0,.24);
+  --shadow-2:0 4px 16px rgba(0,0,0,.42);
+  --shadow-3:0 18px 48px rgba(0,0,0,.60);
+  --line-ctrl:#7d90a6;
+  --bw:2px;
+  color-scheme:dark;
+}
+
+/* 深色：邊界再加強 */
+:root[data-theme="dark"] .card::before{width:5px}
+:root[data-theme="dark"] .card:hover{border-color:var(--line-3)}
+:root[data-theme="dark"] .btn:hover{border-color:var(--line-3)}
+:root[data-theme="dark"] .done-sec{border-top-width:2px}
+:root[data-theme="dark"] .card-detail{border-top-width:2px}
+:root[data-theme="dark"] .done-item{border-color:var(--line-2)}
+:root[data-theme="dark"] .meta,:root[data-theme="dark"] .tagpill{border-width:1.2px}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .card::before{width:5px}
+  :root:not([data-theme="light"]) .card:hover{border-color:var(--line-3)}
+  :root:not([data-theme="light"]) .btn:hover{border-color:var(--line-3)}
+  :root:not([data-theme="light"]) .done-sec{border-top-width:2px}
+  :root:not([data-theme="light"]) .card-detail{border-top-width:2px}
+  :root:not([data-theme="light"]) .done-item{border-color:var(--line-2)}
+  :root:not([data-theme="light"]) .meta,
+  :root:not([data-theme="light"]) .tagpill{border-width:1.2px}
+}
+/* 深色下需要個別微調的地方 */
+:root[data-theme="dark"] .brand-mark,
+:root:not([data-theme="light"]) .brand-mark{box-shadow:none}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei","Noto Sans TC",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+button{font-family:inherit;font-size:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-thumb{background:var(--scroll);border-radius:8px;border:3px solid transparent;background-clip:content-box}
+::-webkit-scrollbar-thumb:hover{background:var(--scroll-hover);background-clip:content-box}
+
+.app{max-width:1240px;margin:0 auto;padding:0 20px 120px}
+
+/* ============================================================
+   Header — 壓成兩列：標題列 + 可點狀態膠囊列
+   ============================================================ */
+.topbar{padding:22px 0 0}
+.topbar-row{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{
+  width:30px;height:30px;border-radius:9px;flex:0 0 auto;
+  background:linear-gradient(140deg,#2f6bff,#6f4bff);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px;
+  box-shadow:0 3px 10px rgba(47,107,255,.28);
+}
+.brand h1{margin:0;font-size:18px;font-weight:650;letter-spacing:-.2px}
+.brand .sub{margin:0 0 0 8px;font-size:12.5px;color:var(--text-3)}
+.brand-line{display:flex;align-items:baseline}
+.header-actions{display:flex;gap:6px;align-items:center}
+
+/* 狀態膠囊 = 篩選器 */
+.pills{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 13px;border-radius:99px;font-size:14px;font-weight:540;
+  border:var(--bw) solid var(--line-ctrl);background:var(--surface);color:var(--text-2);
+  transition:.14s;box-shadow:var(--shadow-1);
+}
+.pill:hover{border-color:var(--line-3);color:var(--text);transform:translateY(-1px)}
+.pill .c{font-weight:680;font-variant-numeric:tabular-nums}
+.pill.on{background:var(--text);border-color:var(--text);color:#fff}
+.pill.zero{opacity:.5}
+.pill.p-over .c{color:var(--danger)}
+.pill.p-today .c{color:var(--warn)}
+.pill.p-over.on,.pill.p-over.on .c{background:var(--danger);border-color:var(--danger);color:#fff}
+.pill.p-today.on,.pill.p-today.on .c{background:var(--warn);border-color:var(--warn);color:#fff}
+.pill-sep{width:1px;height:18px;background:var(--line);margin:0 2px}
+
+/* ============================================================
+   Quick add
+   ============================================================ */
+.quickadd{
+  display:flex;gap:8px;align-items:center;
+  background:var(--surface);border:var(--bw) solid var(--line);border-radius:var(--r-m);
+  padding:6px 6px 6px 13px;box-shadow:var(--shadow-1);margin-top:12px;
+  transition:border-color .15s, box-shadow .15s;
+}
+.quickadd:focus-within{border-color:var(--focus);box-shadow:0 0 0 4px rgba(47,107,255,.10)}
+.quickadd .plus{color:var(--text-3);font-size:18px;line-height:1}
+.quickadd input{flex:1;border:none;outline:none;background:transparent;padding:8px 2px;font-size:15.5px}
+.quickadd input::placeholder{color:var(--text-3)}
+.qa-hint{font-size:11.5px;color:var(--text-3);padding-right:4px;white-space:nowrap}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:9px;
+  font-size:13.5px;font-weight:550;border:var(--bw) solid var(--line-ctrl);background:var(--surface);
+  color:var(--text-2);transition:.15s;white-space:nowrap;
+}
+.btn:hover{background:var(--surface-2);color:var(--text);border-color:var(--line-3)}
+.btn-primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(47,107,255,.25)}
+.btn-primary:hover{background:#255cea;border-color:#255cea;color:#fff}
+.btn-danger{background:var(--danger);border-color:var(--danger);color:#fff}
+.btn-danger:hover{background:#cf3b40;border-color:#cf3b40;color:#fff}
+.btn-sm{padding:5px 10px;font-size:13px;border-radius:8px}
+
+/* ============================================================
+   Toolbar
+   ============================================================ */
+.toolbar{
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px;padding:9px 11px;
+  background:var(--surface);border:var(--bw) solid var(--line);border-radius:var(--r-m);box-shadow:var(--shadow-1);
+}
+.search{position:relative;flex:1;min-width:180px}
+.search input{
+  width:100%;padding:8px 32px 8px 32px;border:var(--bw) solid var(--line-ctrl);border-radius:9px;
+  background:var(--surface-2);outline:none;transition:.15s;font-size:14.5px;
+}
+.search input:focus{border-color:var(--focus);background:var(--surface);box-shadow:0 0 0 3px rgba(47,107,255,.10)}
+.search .ic{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:13px;pointer-events:none}
+.search .clr{position:absolute;right:6px;top:50%;transform:translateY(-50%);color:var(--text-3);font-size:15px;padding:2px 5px;border-radius:6px;line-height:1}
+.search .clr:hover{background:var(--hover);color:var(--text)}
+.sel{padding:8px 10px;border:var(--bw) solid var(--line-ctrl);border-radius:9px;background:var(--surface-2);outline:none;cursor:pointer;color:var(--text-2);font-size:14px}
+.sel:focus{border-color:var(--focus)}
+.chip{padding:5px 12px;border-radius:99px;font-size:13px;font-weight:520;border:var(--bw) solid var(--line-ctrl);background:var(--surface-2);color:var(--text-2);transition:.14s}
+.chip:hover{border-color:var(--line-3);color:var(--text)}
+.chip.on{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 2px 6px rgba(47,107,255,.22)}
+.tagbar{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tagbar .lb{font-size:12px;color:var(--text-3);margin-right:1px}
+.filter-note{display:flex;align-items:center;gap:8px;width:100%;font-size:12.5px;color:var(--accent)}
+
+/* ============================================================
+   Card wall — 自適應 1 / 2 / 3 欄
+   ============================================================ */
+.wall{display:grid;gap:10px;grid-template-columns:1fr;align-items:start;margin-top:14px}
+@media (min-width:768px){ .wall{grid-template-columns:repeat(2,1fr)} }
+@media (min-width:1120px){ .wall{grid-template-columns:repeat(3,1fr)} }
+
+.card{
+  position:relative;background:var(--surface);border:var(--bw) solid var(--line);
+  border-radius:var(--r-m);box-shadow:var(--shadow-1);overflow:hidden;
+  transition:box-shadow .18s, border-color .18s, transform .18s, opacity .25s;
+}
+.card:hover{box-shadow:var(--shadow-2);border-color:var(--line-3)}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
+.card.p-high::before{background:var(--p-high)}
+.card.p-med::before{background:var(--p-med)}
+.card.p-low::before{background:var(--p-low)}
+.card.is-overdue{border-color:var(--tint-over-line);background:linear-gradient(180deg,var(--tint-over),var(--surface) 60%)}
+.card.is-today{border-color:var(--tint-today-line);background:linear-gradient(180deg,var(--tint-today),var(--surface) 60%)}
+.card.removing{opacity:0;transform:scale(.97)}
+
+.card-main{display:flex;gap:10px;padding:11px 11px 11px 15px;align-items:flex-start}
+.tick{
+  flex:0 0 auto;width:20px;height:20px;margin-top:1px;border-radius:50%;
+  border:1.8px solid var(--line-3);background:var(--surface);transition:.16s;
+  display:flex;align-items:center;justify-content:center;color:transparent;font-size:10px;line-height:1;
+}
+.tick.on{color:#fff}
+.tick:hover{border-color:var(--ok);box-shadow:0 0 0 4px var(--ok-soft)}
+.tick.on{background:var(--ok);border-color:var(--ok)}
+.card-body{flex:1;min-width:0}
+.card-title{
+  font-size:15px;font-weight:560;letter-spacing:-.1px;word-break:break-word;line-height:1.45;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-meta{display:flex;gap:5px;align-items:center;flex-wrap:wrap;margin-top:6px}
+.meta{
+  display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:520;
+  padding:2.5px 8px;border-radius:6px;background:var(--surface-2);color:var(--text-2);
+  border:var(--bw) solid var(--line-2);white-space:nowrap;
+}
+.meta.due-over{background:var(--danger-soft);color:var(--danger);border-color:var(--danger-line);font-weight:600}
+.meta.due-today{background:var(--warn-soft);color:var(--today-fg);border-color:var(--warn-line);font-weight:600}
+.meta.due-soon{background:var(--surface)be8;color:var(--soon-fg);border-color:var(--soon-line)}
+.meta.rec{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line);max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.tagpill{display:inline-flex;align-items:center;font-size:12px;padding:2.5px 9px;border-radius:99px;background:var(--chip-bg);color:var(--chip-fg);border:1px solid var(--chip-line);white-space:nowrap}
+.card-side{display:flex;align-items:center;gap:0;flex:0 0 auto;opacity:.45;transition:opacity .15s}
+.card:hover .card-side{opacity:1}
+.icobtn{width:26px;height:26px;border-radius:7px;display:flex;align-items:center;justify-content:center;color:var(--text-3);font-size:12.5px;transition:.14s}
+.icobtn:hover{background:var(--hover);color:var(--text)}
+.caret{transition:transform .2s ease;display:inline-block}
+.caret.open{transform:rotate(90deg)}
+.pbar{height:3px;background:var(--line-2);border-radius:3px;margin-top:8px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--ok);border-radius:3px;transition:width .3s ease}
+
+/* Expanded */
+.card-detail{border-top:1px dashed var(--line);padding:11px 13px 13px 15px;background:var(--surface-2)}
+.detail-note{font-size:13px;color:var(--text-2);background:var(--surface);border:var(--bw) solid var(--line-2);border-radius:var(--r-s);padding:8px 10px;margin-bottom:10px;white-space:pre-wrap;word-break:break-word}
+.detail-label{font-size:11.5px;font-weight:620;color:var(--text-3);letter-spacing:.4px;margin-bottom:6px}
+.sub-list{display:flex;flex-direction:column;gap:0;max-height:210px;overflow-y:auto;margin-bottom:8px}
+.sub-item{display:flex;align-items:center;gap:8px;padding:1px 6px;border-radius:6px;transition:background .14s}
+.sub-item:hover{background:var(--surface)}
+.sub-tick{flex:0 0 auto;width:15px;height:15px;border-radius:5px;border:1.6px solid var(--line-3);background:var(--surface);display:flex;align-items:center;justify-content:center;color:transparent;font-size:9px;line-height:1;transition:.14s}
+.sub-tick.on{color:#fff}
+.sub-tick:hover{border-color:var(--ok)}
+.sub-tick.on{background:var(--ok);border-color:var(--ok)}
+.sub-text{flex:1;font-size:13px;line-height:1.5;word-break:break-word}
+.sub-item.done .sub-text{color:var(--text-3);text-decoration:line-through}
+.sub-del{opacity:0;color:var(--text-3);font-size:13px;padding:0 5px;border-radius:6px;transition:.14s}
+.sub-item:hover .sub-del{opacity:1}
+.sub-del:hover{background:var(--danger-soft);color:var(--danger)}
+.sub-add{display:flex;gap:6px;align-items:center}
+.sub-add input{flex:1;min-width:0;padding:6px 9px;border:1px dashed var(--line-3);border-radius:8px;background:var(--surface);outline:none;font-size:13px}
+.sub-add input:focus{border-style:solid;border-color:var(--focus);box-shadow:0 0 0 3px rgba(47,107,255,.09)}
+.detail-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:10px;padding-top:9px;border-top:1px solid var(--line-2)}
+.stamp{font-size:11.5px;color:var(--text-3)}
+.empty-sub{font-size:12.5px;color:var(--text-3);padding:0 0 8px}
+
+/* ============================================================
+   Completed
+   ============================================================ */
+.done-sec{margin-top:28px;border-top:1px solid var(--line);padding-top:14px}
+.done-head{display:flex;align-items:center;gap:9px;width:100%;padding:6px 4px;border-radius:9px;transition:background .14s}
+.done-head:hover{background:var(--hover)}
+.done-head .t{font-size:13px;font-weight:620;color:var(--text-2)}
+.done-head .c{font-size:11px;font-weight:600;color:var(--text-3);background:var(--line-2);border-radius:99px;padding:1px 8px}
+.done-head .sp{flex:1}
+.done-list{display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.done-item{background:var(--done-bg);border:var(--bw) solid transparent;border-radius:9px;overflow:hidden;transition:.14s}
+.done-item:hover{background:var(--done-bg-hover)}
+.done-item.open{background:var(--surface);border-color:var(--line);box-shadow:var(--shadow-1)}
+.done-row{display:flex;align-items:center;gap:9px;padding:7px 11px}
+.done-row .tt{flex:1;min-width:0;font-size:13.5px;color:var(--text-3);text-decoration:line-through;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.done-item.open .tt{color:var(--text-2)}
+.done-row .dt{font-size:11px;color:var(--text-3);white-space:nowrap}
+.done-detail{border-top:1px dashed var(--line);padding:10px 13px 12px;background:var(--surface-2)}
+.done-detail .sub-item{cursor:default}
+.done-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;padding-top:9px;border-top:1px solid var(--line-2)}
+.btn-reuse{background:var(--accent-soft);border-color:var(--accent-line);color:var(--accent);font-weight:600}
+.btn-reuse:hover{background:var(--accent-soft2);border-color:var(--focus);color:var(--accent)}
+
+/* ============================================================
+   Empty / skeleton
+   ============================================================ */
+.empty{grid-column:1/-1;text-align:center;padding:48px 20px;background:var(--surface);border:var(--bw) dashed var(--line);border-radius:var(--r-l)}
+.empty .ic{font-size:32px;opacity:.5}
+.empty h3{margin:11px 0 4px;font-size:15px;font-weight:620}
+.empty p{margin:0;font-size:13px;color:var(--text-3)}
+.empty .btn{margin-top:13px}
+.sk{background:var(--surface);border:var(--bw) solid var(--line);border-radius:var(--r-m);padding:14px 16px}
+.sk i{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--sk-1) 25%,var(--sk-2) 37%,var(--sk-1) 63%);background-size:400% 100%;animation:sh 1.3s infinite}
+.sk i+i{margin-top:8px}
+@keyframes sh{0%{background-position:100% 50%}100%{background-position:0 50%}}
+
+/* ============================================================
+   Modal
+   ============================================================ */
+.overlay{position:fixed;inset:0;background:rgba(20,28,42,.42);backdrop-filter:blur(2px);display:flex;align-items:center;justify-content:center;padding:20px;z-index:60;animation:fade .16s ease}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.modal{width:100%;max-width:560px;max-height:88vh;overflow:auto;background:var(--surface);border-radius:var(--r-l);box-shadow:var(--shadow-3);animation:pop .18s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:none}}
+.modal-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line-2)}
+.modal-head h2{margin:0;font-size:16px;font-weight:640}
+.modal-body{padding:17px 20px}
+.modal-foot{display:flex;justify-content:flex-end;gap:8px;padding:13px 20px;border-top:1px solid var(--line-2);background:var(--surface-2);border-radius:0 0 var(--r-l) var(--r-l)}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--text-2);margin-bottom:6px}
+.field .req{color:var(--danger)}
+.inp,textarea.inp{width:100%;padding:8px 10px;border:var(--bw) solid var(--line-ctrl);border-radius:9px;background:var(--surface-2);outline:none;transition:.15s}
+.inp:focus{border-color:var(--focus);background:var(--surface);box-shadow:0 0 0 3px rgba(47,107,255,.10)}
+textarea.inp{resize:vertical;min-height:60px}
+.inp.err{border-color:var(--danger);background:var(--danger-soft)}
+.err-msg{display:none;font-size:12px;color:var(--danger);margin-top:5px}
+.err-msg.show{display:block}
+.warn-msg{display:none;font-size:12px;color:var(--warn-fg);background:var(--warn-soft);border:1px solid var(--warn-line);border-radius:7px;padding:6px 9px;margin-top:6px}
+.warn-msg.show{display:block}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.seg{display:flex;gap:6px}
+.seg button{flex:1;padding:7px;border:var(--bw) solid var(--line);border-radius:9px;background:var(--surface-2);font-size:13px;font-weight:540;color:var(--text-2);transition:.14s}
+.seg button:hover{border-color:var(--line-3)}
+.seg button.on{color:#fff;border-color:transparent;box-shadow:var(--shadow-1)}
+.seg button[data-v="high"].on{background:var(--p-high)}
+.seg button[data-v="med"].on{background:var(--p-med)}
+.seg button[data-v="low"].on{background:var(--p-low)}
+.seg.basis button.on{background:var(--accent)}
+.tagpick{display:flex;gap:6px;flex-wrap:wrap}
+.chip-manage{border-style:dashed;background:transparent;color:var(--text-3)}
+.tm-hint{margin:0 0 12px;color:var(--text-3);font-size:12.5px;line-height:1.6}
+.tm-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line-2)}
+.tm-move{display:flex;flex-direction:column;gap:2px}
+.tm-move .icobtn{height:15px;width:22px;font-size:9px}
+.icobtn:disabled{opacity:.28;cursor:default}
+.tm-row .inp{flex:1;min-width:0;padding:6px 9px}
+.tm-count{font-size:12px;color:var(--text-3);white-space:nowrap;min-width:58px;text-align:right}
+.tm-add{display:flex;gap:8px;margin-top:14px}
+.tm-add .inp{flex:1;min-width:0}
+.tm-empty{color:var(--text-3);font-size:13px;margin:4px 0}
+.m-sub-list{display:flex;flex-direction:column;gap:0;max-height:190px;overflow-y:auto;margin-bottom:8px}
+.modal .sub-item:hover{background:var(--surface-2)}
+
+/* 週期設定面板 */
+.recbox{border:var(--bw) solid var(--line);border-radius:var(--r-m);background:var(--surface-2);padding:12px;margin-top:9px}
+.recbox .sub-lb{font-size:11.5px;font-weight:600;color:var(--text-3);margin-bottom:6px}
+.wd{display:flex;gap:5px;flex-wrap:wrap}
+.wd button{width:34px;height:32px;border-radius:8px;border:var(--bw) solid var(--line);background:var(--surface);font-size:12.5px;font-weight:560;color:var(--text-2);transition:.14s}
+.wd button:hover{border-color:var(--focus)}
+.wd button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.rec-inline{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:13px;color:var(--text-2)}
+.rec-inline select{padding:6px 8px;border:var(--bw) solid var(--line);border-radius:8px;background:var(--surface);outline:none}
+.rec-preview{margin-top:10px;font-size:12px;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:8px;padding:6px 9px}
+.rec-hint{font-size:11.5px;color:var(--text-3);margin-top:5px;line-height:1.5}
+
+/* ============================================================
+   Toast / FAB
+   ============================================================ */
+.toast-wrap{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:90;display:flex;flex-direction:column;gap:8px;align-items:center}
+.toast{display:flex;align-items:center;gap:13px;background:var(--toast-bg);color:#fff;padding:10px 13px 10px 15px;border-radius:11px;box-shadow:0 12px 32px rgba(15,22,35,.32);font-size:13px;max-width:min(92vw,480px);animation:up .2s cubic-bezier(.2,.9,.3,1.1)}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.toast.out{opacity:0;transform:translateY(10px);transition:.22s}
+.toast .msg{flex:1}
+.toast .act{color:#8fb4ff;font-weight:650;white-space:nowrap;padding:3px 7px;border-radius:7px}
+.toast .act:hover{background:rgba(143,180,255,.16)}
+.toast .x{color:#8b98a8;font-size:15px;line-height:1;padding:2px 5px;border-radius:6px}
+.toast .x:hover{background:rgba(255,255,255,.10);color:#fff}
+.fab{position:fixed;right:24px;bottom:24px;z-index:50;width:50px;height:50px;border-radius:15px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:23px;box-shadow:0 8px 22px rgba(47,107,255,.40);transition:.16s}
+.fab:hover{background:#255cea;transform:translateY(-2px)}
+
+/* 排程中（休眠）卡片 */
+.card.is-sched{border-style:dashed;border-color:var(--line-3);background:var(--surface-2);box-shadow:none}
+.card.is-sched::before{opacity:.35}
+.card.is-sched .card-title{color:var(--text-2)}
+.meta.sched{background:var(--hover);color:var(--text-2);border-color:var(--line-2)}
+.pill.p-sched .c{color:var(--text-3)}
+.pill.p-sched.on,.pill.p-sched.on .c{background:var(--text-3);border-color:var(--text-3);color:#fff}
+.sched-banner{
+  grid-column:1/-1;display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  font-size:12.5px;color:var(--text-2);background:var(--surface-2);border:1px dashed var(--line-3);
+  border-radius:var(--r-m);padding:9px 12px;
+}
+.danger-zone{border-color:var(--danger-line);background:var(--danger-soft)}
+.danger-zone h3{color:var(--danger)}
+/* 細項拖曳排序 */
+.sub-grip{
+  flex:0 0 auto;opacity:0;cursor:grab;color:var(--text-3);font-size:11px;line-height:1;
+  padding:0 1px;letter-spacing:-1px;transition:opacity .14s;user-select:none;
+}
+.sub-item:hover .sub-grip{opacity:.7}
+.sub-grip:active{cursor:grabbing}
+.sub-item{border:var(--bw) solid transparent}
+.sub-item.sdragging{opacity:.35}
+.sub-item.drop-before{box-shadow:inset 0 2px 0 var(--accent)}
+.sub-item.drop-after{box-shadow:inset 0 -2px 0 var(--accent)}
+/* 備份狀態 */
+.bk-dot{width:7px;height:7px;border-radius:50%;background:var(--line-3);display:inline-block;margin-left:5px;flex:0 0 auto}
+.bk-dot.ok{background:var(--ok);box-shadow:0 0 0 3px var(--ok-soft)}
+.bk-dot.warn{background:var(--warn);box-shadow:0 0 0 3px var(--warn-soft)}
+.bk-dot.err{background:var(--danger);box-shadow:0 0 0 3px var(--danger-soft)}
+.bk-card{border:var(--bw) solid var(--line);border-radius:var(--r-m);padding:13px;background:var(--surface-2);margin-bottom:13px}
+.bk-card h3{margin:0 0 3px;font-size:13.5px;font-weight:650}
+.bk-card p{margin:0;font-size:12.5px;color:var(--text-2);line-height:1.6}
+.bk-status{display:flex;align-items:center;gap:7px;font-size:12.5px;margin-top:10px;padding:7px 10px;border-radius:8px;background:var(--surface);border:var(--bw) solid var(--line-2)}
+.bk-status.ok{background:var(--ok-soft);border-color:var(--ok-line);color:var(--ok-fg)}
+.bk-status.warn{background:var(--warn-soft);border-color:var(--warn-line);color:var(--warn-fg)}
+.bk-status.err{background:var(--danger-soft);border-color:var(--danger-line);color:var(--danger)}
+.bk-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:11px}
+.bk-note{font-size:11.5px;color:var(--text-3);margin-top:9px;line-height:1.6}
+/* A：剛浮上來的卡片 */
+.card.is-new{box-shadow:0 0 0 2px rgba(47,107,255,.20), var(--shadow-1)}
+.meta.isnew{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:620}
+/* B：浮現摘要橫幅 */
+.surface-banner{
+  grid-column:1/-1;display:flex;align-items:flex-start;gap:11px;
+  background:linear-gradient(100deg,var(--banner-1),var(--banner-2));border:1px solid var(--accent-line);
+  border-radius:var(--r-m);padding:11px 13px;box-shadow:var(--shadow-1);
+  animation:up .25s cubic-bezier(.2,.9,.3,1.1);
+}
+.surface-banner .ic{font-size:16px;line-height:1.35}
+.surface-banner .bd{flex:1;min-width:0;font-size:13.5px;color:var(--banner-fg)}
+.surface-banner .bd b{color:var(--accent)}
+.surface-banner ul{margin:6px 0 0;padding-left:17px}
+.surface-banner li{font-size:13px;color:var(--text-2);margin-top:2px}
+.surface-banner li .d{color:var(--accent);font-weight:600}
+/* 已完成多選 */
+.selbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px;padding:8px 11px;background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:9px;font-size:12.5px;color:var(--accent)}
+.selbar .sp{flex:1}
+.selbox{
+  flex:0 0 auto;width:17px;height:17px;border-radius:5px;border:1.7px solid var(--line-3);background:var(--surface);
+  display:flex;align-items:center;justify-content:center;color:transparent;font-size:10px;line-height:1;transition:.14s;
+}
+.selbox.on{color:#fff}
+.selbox:hover{border-color:var(--accent)}
+.selbox.on{background:var(--accent);border-color:var(--accent)}
+.done-item.sel{background:var(--accent-soft);border-color:var(--accent-line)}
+.hidden{display:none !important}
+@media (max-width:640px){ .row2{grid-template-columns:1fr} .app{padding:0 14px 120px} .qa-hint{display:none} }
+</style>
+<script>
+/* 在畫面繪製前就套用主題，避免開啟瞬間閃一下白底 */
+(function(){
+  try{
+    var v = localStorage.getItem("todo.theme");
+    if(v === "light" || v === "dark") document.documentElement.setAttribute("data-theme", v);
+  }catch(e){}
+})();
+</script>
+</head>
+<body>
+
+<div class="app">
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="brand">
+        <div class="brand-mark">✓</div>
+        <div class="brand-line"><h1>我的待辦事項</h1><span class="sub" id="todayLabel"></span></div>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-sm" id="btnTheme" title="切換外觀：自動 / 淺色 / 深色"></button>
+        <button class="btn btn-sm" id="btnData" title="備份、匯出與匯入">💾 資料<span id="bkDot" class="bk-dot"></span></button>
+      </div>
+    </div>
+    <div class="pills" id="pills"></div>
+  </header>
+
+  <div class="quickadd">
+    <span class="plus">＋</span>
+    <input id="qaInput" type="text" placeholder="加一件待辦事項…（輸入後按 Enter 立即建立）" maxlength="200" autocomplete="off">
+    <span class="qa-hint">Enter 快速新增</span>
+    <button class="btn btn-sm btn-primary" id="qaDetail">完整設定…</button>
+  </div>
+
+  <div class="toolbar">
+    <div class="search">
+      <span class="ic">🔍</span>
+      <input id="qInput" type="text" placeholder="搜尋標題、備註或細項（含已完成）…" autocomplete="off">
+      <button class="clr hidden" id="qClear" title="清除">×</button>
+    </div>
+    <select class="sel" id="prioSel">
+      <option value="all">所有重要程度</option>
+      <option value="high">🔴 高</option>
+      <option value="med">🟠 中</option>
+      <option value="low">🔵 低</option>
+    </select>
+    <select class="sel" id="sortSel">
+      <option value="prio">排序：重要程度優先</option>
+      <option value="due">排序：到期日</option>
+      <option value="created">排序：最新建立</option>
+      <option value="oldest">排序：最早建立</option>
+    </select>
+    <div class="tagbar" id="tagBar"></div>
+    <div class="filter-note hidden" id="filterNote">
+      <span id="filterNoteTxt"></span>
+      <button class="btn btn-sm" id="btnClearFilter">清除所有條件</button>
+    </div>
+  </div>
+
+  <main class="wall" id="wall"></main>
+  <section class="done-sec" id="doneSec"></section>
+</div>
+
+<button class="fab" id="fab" title="新增待辦事項">＋</button>
+
+<!-- ============ Task Modal ============ -->
+<div class="overlay hidden" id="taskModal">
+  <div class="modal" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2 id="mTitle">新增待辦事項</h2>
+      <button class="icobtn" id="mClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field">
+        <label>標題 <span class="req">*</span></label>
+        <input class="inp" id="mName" type="text" maxlength="200" placeholder="例如：整理下半年度預算試算表">
+        <div class="err-msg" id="mNameErr">請輸入標題，這是唯一的必填欄位。</div>
+      </div>
+      <div class="field">
+        <label>備註</label>
+        <textarea class="inp" id="mNote" maxlength="500" placeholder="補充說明、連結、聯絡人…（選填）"></textarea>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label>完成期限</label>
+          <input class="inp" id="mDue" type="date">
+          <div class="warn-msg" id="mDueWarn">⚠️ 這個日期已經過去了，建立後會直接標為逾期。</div>
+        </div>
+        <div class="field">
+          <label>提前幾天出現在清單</label>
+          <div class="rec-inline">
+            <span>到期前</span>
+            <input class="inp" id="mLead" type="number" min="0" max="365" step="1" style="width:80px">
+            <span>天</span>
+            <button class="btn btn-sm" id="mLeadAuto">建議值</button>
+          </div>
+          <div class="rec-hint" id="leadHint"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>重要程度</label>
+        <div class="seg" id="mPrio">
+          <button data-v="high">🔴 高</button>
+          <button data-v="med">🟠 中</button>
+          <button data-v="low">🔵 低</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>分類標籤</label>
+        <div class="tagpick" id="mTags"></div>
+      </div>
+
+      <div class="field">
+        <label>重複週期</label>
+        <select class="inp" id="mRecType">
+          <option value="none">不重複</option>
+          <option value="daily">每天</option>
+          <option value="weekly">每週（指定星期）</option>
+          <option value="monthly">每月（指定日期）</option>
+          <option value="yearly">每年（指定月日）</option>
+        </select>
+
+        <div class="recbox hidden" id="recBox">
+          <div id="recWeekly" class="hidden">
+            <div class="sub-lb">重複於星期</div>
+            <div class="wd" id="wdPick">
+              <button data-d="1">一</button><button data-d="2">二</button><button data-d="3">三</button>
+              <button data-d="4">四</button><button data-d="5">五</button><button data-d="6">六</button>
+              <button data-d="0">日</button>
+            </div>
+          </div>
+
+          <div id="recMonthly" class="hidden">
+            <div class="sub-lb">重複於每月</div>
+            <div class="rec-inline">
+              <select id="mMonthDay"></select><span>號</span>
+            </div>
+            <div class="rec-hint">選 29–31 號時，若該月沒有這一天，會自動落在該月最後一天。</div>
+          </div>
+
+          <div id="recYearly" class="hidden">
+            <div class="sub-lb">重複於每年</div>
+            <div class="rec-inline">
+              <select id="mYearMonth"></select><span>月</span>
+              <select id="mYearDay"></select><span>日</span>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <div class="sub-lb">下一期的計算基準</div>
+            <div class="seg basis" id="mBasis">
+              <button data-v="due">依原定期限</button>
+              <button data-v="done">依實際完成日</button>
+            </div>
+            <div class="rec-hint" id="basisHint"></div>
+          </div>
+
+          <div style="margin-top:12px">
+            <div class="sub-lb">結束條件（選填）</div>
+            <div class="rec-inline">
+              <span>重複到</span><input class="inp" id="mUntil" type="date" style="width:auto">
+              <button class="btn btn-sm" id="mUntilClear">清除</button>
+            </div>
+          </div>
+
+          <div class="rec-preview" id="recPreview"></div>
+        </div>
+      </div>
+
+      <div class="field" style="margin-bottom:0">
+        <label>拆解細項</label>
+        <div class="m-sub-list" id="mSubList"></div>
+        <div class="sub-add">
+          <input id="mSubInput" type="text" maxlength="120" placeholder="新增一個細項，按 Enter 繼續加下一個">
+          <button class="btn btn-sm" id="mSubAdd">加入</button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" id="mCancel">取消</button>
+      <button class="btn btn-primary" id="mSave">儲存</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ Confirm ============ -->
+<div class="overlay hidden" id="confirmModal">
+  <div class="modal" style="max-width:400px;z-index:75" role="alertdialog" aria-modal="true">
+    <div class="modal-head"><h2 id="cfTitle">確認刪除</h2></div>
+    <div class="modal-body" style="padding-top:6px">
+      <p style="margin:0;color:var(--text-2);font-size:13.5px" id="cfBody"></p>
+    </div>
+    <div class="modal-foot">
+      <button class="btn" id="cfCancel">取消</button>
+      <button class="btn btn-danger" id="cfOk">刪除</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 標籤管理 ============ -->
+<div class="overlay hidden" id="tagModal" style="z-index:70">
+  <div class="modal" style="max-width:440px" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2>管理標籤</h2>
+      <button class="icobtn" id="tmClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="tm-hint">直接點名稱就能改名，會一併套用到所有事項；用 ▲▼ 調整顯示順序。刪除標籤不會刪除事項。</p>
+      <div id="tmList"></div>
+      <div class="tm-add">
+        <input class="inp" id="tmNew" type="text" maxlength="12" placeholder="新標籤名稱，按 Enter 新增">
+        <button class="btn btn-sm" id="tmAdd">新增</button>
+      </div>
+    </div>
+    <div class="modal-foot"><button class="btn" id="tmOk">完成</button></div>
+  </div>
+</div>
+
+<!-- ============ 資料與備份 ============ -->
+<div class="overlay hidden" id="dataModal">
+  <div class="modal" style="max-width:560px" role="dialog" aria-modal="true">
+    <div class="modal-head">
+      <h2>資料與備份</h2>
+      <button class="icobtn" id="dClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="bk-card">
+        <h3>🔗 自動備份到指定檔案</h3>
+        <p>指定一個 <code>.json</code> 檔，之後每次異動都會自動寫回去。把它放在 OneDrive／Google Drive 之類會同步的資料夾，換電腦時匯入那個檔就接得回來。</p>
+        <div class="bk-status" id="bkStatus"></div>
+        <div class="bk-actions" id="bkActions"></div>
+        <div class="bk-note" id="bkNote"></div>
+      </div>
+
+      <div class="bk-card">
+        <h3>📤 手動匯出 / 匯入</h3>
+        <p>匯出是完整快照（含所有任務、細項、週期設定）。匯入會<b>整份取代</b>目前資料，動作前會再確認一次。</p>
+        <div class="bk-actions">
+          <button class="btn btn-sm" id="bkExport">匯出 JSON 備份</button>
+          <button class="btn btn-sm" id="bkImport">從 JSON 還原</button>
+          <button class="btn btn-sm" id="bkCsv">匯出 CSV（給 Excel）</button>
+        </div>
+        <div class="bk-note">CSV 是給人看的報表，欄位會攤平成文字，<b>不能</b>用來還原資料——還原請用 JSON。</div>
+      </div>
+
+      <div class="bk-card">
+        <h3>📍 目前資料存在哪裡</h3>
+        <p id="bkWhere"></p>
+      </div>
+
+      <div class="bk-card danger-zone" style="margin-bottom:0">
+        <h3>⚠️ 清空資料</h3>
+        <p>刪除目前<b>所有</b>待辦事項，包含未完成、排程中與已完成紀錄，清空後畫面會回到全新狀態。</p>
+        <p style="margin-top:6px">執行前會再確認一次，事後也可以用 Toast 的「復原」退回一次。若要真正保險，<b>請先用上面的「匯出 JSON 備份」存一份</b>。</p>
+        <div class="bk-actions"><button class="btn btn-sm btn-danger" id="bkWipe">清空資料…</button></div>
+      </div>
+    </div>
+    <div class="modal-foot"><button class="btn" id="dOk">關閉</button></div>
+  </div>
+</div>
+<input type="file" id="bkFile" accept=".json,application/json" class="hidden">
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+"use strict";
+/* ================================================================
+   0. Storage
+   ================================================================ */
+var KEY = "todo.public.v1";   // 與作者本機版本分開，避免 file:// 同源互相覆蓋
+var memStore = null, storageOK = true;
+function save(){
+  saveTags();
+  try{ localStorage.setItem(KEY, JSON.stringify(state.tasks)); }
+  catch(e){ storageOK = false; memStore = JSON.stringify(state.tasks); }
+  if(typeof scheduleBackup === "function") scheduleBackup();
+}
+function load(){
+  try{ var s = localStorage.getItem(KEY); return s ? JSON.parse(s) : null; }
+  catch(e){ storageOK = false; return memStore ? JSON.parse(memStore) : null; }
+}
+function clearStore(){ try{ localStorage.removeItem(KEY); }catch(e){ memStore = null; } }
+/* 自訂標籤清單（順序即顯示順序），與任務分開存 */
+var TAGS_KEY = KEY + ".tags";
+var TAG_MAX = 12;
+function cleanTags(arr){
+  var out = [];
+  (arr || []).forEach(function(t){
+    t = String(t == null ? "" : t).trim().slice(0, TAG_MAX);
+    if(t && out.indexOf(t) < 0) out.push(t);
+  });
+  return out;
+}
+function loadTags(def){
+  try{
+    var s = localStorage.getItem(TAGS_KEY);
+    if(s){ var a = JSON.parse(s); if(Array.isArray(a)) return cleanTags(a); }
+  }catch(e){}
+  return def.slice();
+}
+function saveTags(){
+  if(typeof ALL_TAGS === "undefined" || !ALL_TAGS) return;
+  try{ localStorage.setItem(TAGS_KEY, JSON.stringify(ALL_TAGS)); }catch(e){}
+}
+/* 上次造訪日（用來判斷哪些排程項目是「這次才浮上來的」） */
+var SEEN_KEY = KEY + ".lastSeen";
+var memSeen = null;
+function getSeen(){ try{ return localStorage.getItem(SEEN_KEY); }catch(e){ return memSeen; } }
+function setSeen(v){ try{ localStorage.setItem(SEEN_KEY, v); }catch(e){ memSeen = v; } }
+
+/* ================================================================
+   1. Date helpers
+   ================================================================ */
+function pad(n){ return n < 10 ? "0" + n : "" + n; }
+function iso(d){ return d.getFullYear() + "-" + pad(d.getMonth()+1) + "-" + pad(d.getDate()); }
+function today(){ var d = new Date(); d.setHours(0,0,0,0); return d; }
+function fromISO(s){ var p = s.split("-"); return new Date(+p[0], +p[1]-1, +p[2]); }
+function shift(days){ var d = today(); d.setDate(d.getDate()+days); return iso(d); }
+function diffDays(s){ return Math.round((fromISO(s) - today()) / 86400000); }
+function lastDayOf(y, m){ return new Date(y, m+1, 0).getDate(); }
+var WD = ["日","一","二","三","四","五","六"];
+function fmtDue(s){
+  var d = diffDays(s), dt = fromISO(s);
+  if(d === 0) return "今天";
+  if(d === 1) return "明天";
+  if(d === -1) return "昨天";
+  if(d < 0) return "逾期 " + (-d) + " 天";
+  if(d <= 7) return "週" + WD[dt.getDay()] + "（" + d + " 天後）";
+  return (dt.getFullYear() !== today().getFullYear() ? dt.getFullYear() + "/" : "") +
+         (dt.getMonth()+1) + "/" + dt.getDate();
+}
+function fmtDate(s){
+  var d = fromISO(s), y = d.getFullYear() !== today().getFullYear() ? d.getFullYear() + "/" : "";
+  return y + (d.getMonth()+1) + "/" + d.getDate() + "（週" + WD[d.getDay()] + "）";
+}
+function fmtStamp(t){
+  var d = new Date(t);
+  return d.getFullYear() + "/" + pad(d.getMonth()+1) + "/" + pad(d.getDate()) + " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
+}
+
+/* ================================================================
+   2. Recurrence engine
+   rec = { type, weekdays[], monthDay, month, day, until, basis }
+   ================================================================ */
+var LEAD_DEFAULT = { none:0, daily:0, weekly:3, monthly:7, yearly:30 };
+function blankRec(){
+  var t = today();
+  return { type:"none", weekdays:[t.getDay()], monthDay:t.getDate(),
+           month:t.getMonth()+1, day:t.getDate(), until:null, basis:"due", leadDays:0 };
+}
+function recLabel(r){
+  if(!r || r.type === "none") return "";
+  if(r.type === "daily") return "每天";
+  if(r.type === "weekly"){
+    var ds = (r.weekdays||[]).slice().sort(function(a,b){ return ((a+6)%7) - ((b+6)%7); });
+    return ds.length ? "每週" + ds.map(function(d){ return WD[d]; }).join("、") : "每週";
+  }
+  if(r.type === "monthly") return "每月 " + r.monthDay + " 號";
+  if(r.type === "yearly") return "每年 " + r.month + "/" + r.day;
+  return "";
+}
+function recLabelFull(r){
+  var s = recLabel(r);
+  if(!s) return "";
+  s += r.basis === "done" ? "（依實際完成日推算）" : "（依原定期限推算）";
+  s += "，到期前 " + (r.leadDays||0) + " 天出現在清單";
+  if(r.until) s += "，重複到 " + r.until;
+  return s;
+}
+/* 休眠：下一期已排定但時間未到，不佔用主清單版面 */
+function isDormant(t){
+  return !t.done && !!t.showFrom && t.showFrom > iso(today());
+}
+/* A：三天內才從「排程中」浮上來的，標記為新排入 */
+var NEW_WINDOW = 3;
+function isNewlySurfaced(t){
+  if(t.done || !t.showFrom) return false;
+  var d = diffDays(t.showFrom);
+  return d <= 0 && d >= -NEW_WINDOW;
+}
+/* B：自上次造訪之後才浮上來的 */
+function surfacedSince(seen){
+  return state.tasks.filter(function(t){
+    return !t.done && t.showFrom && t.showFrom <= iso(today()) && (!seen || t.showFrom > seen);
+  });
+}
+function shiftFrom(isoStr, days){
+  var d = fromISO(isoStr); d.setDate(d.getDate() - days); return iso(d);
+}
+/* 回傳嚴格晚於 from 的下一個發生日（Date），找不到回 null */
+function nextOccurrence(from, r){
+  var d, i, y, m, dd, cand;
+  if(r.type === "daily"){
+    d = new Date(from); d.setDate(d.getDate()+1); return d;
+  }
+  if(r.type === "weekly"){
+    var days = (r.weekdays && r.weekdays.length) ? r.weekdays : [from.getDay()];
+    for(i=1;i<=14;i++){
+      d = new Date(from); d.setDate(d.getDate()+i);
+      if(days.indexOf(d.getDay()) >= 0) return d;
+    }
+    return null;
+  }
+  if(r.type === "monthly"){
+    for(i=0;i<=24;i++){
+      y = from.getFullYear(); m = from.getMonth()+i;
+      var yy = y + Math.floor(m/12), mm = ((m%12)+12)%12;
+      dd = Math.min(r.monthDay, lastDayOf(yy, mm));
+      cand = new Date(yy, mm, dd);
+      if(cand > from) return cand;
+    }
+    return null;
+  }
+  if(r.type === "yearly"){
+    for(i=0;i<=6;i++){
+      y = from.getFullYear()+i;
+      dd = Math.min(r.day, lastDayOf(y, r.month-1));
+      cand = new Date(y, r.month-1, dd);
+      if(cand > from) return cand;
+    }
+    return null;
+  }
+  return null;
+}
+/* 依任務算出下一期到期日字串，超過結束條件回 null */
+function nextDueFor(t){
+  var r = t.recurrence;
+  if(!r || r.type === "none") return null;
+  var base;
+  if(r.basis === "done") base = today();
+  else base = t.dueDate ? fromISO(t.dueDate) : today();
+  if(base < today() && r.basis !== "done") base = new Date(today());
+  var nx = nextOccurrence(base, r);
+  if(!nx) return null;
+  if(r.until && iso(nx) > r.until) return null;
+  return iso(nx);
+}
+var PRIO_LABEL = { high:"高", med:"中", low:"低" };
+
+/* ================================================================
+   3. Mock data
+   ================================================================ */
+var uid = 0;
+function nid(){ uid++; return "t" + Date.now().toString(36) + uid; }
+function subs(arr){ return arr.map(function(a){ return { id:nid(), title:a[0], done:a[1] }; }); }
+function rec(type, o){
+  var r = blankRec(); r.type = type; r.leadDays = LEAD_DEFAULT[type];
+  for(var k in (o||{})) r[k] = o[k];
+  return r;
+}
+var HOUR = 3600000, DAY = 86400000;
+
+/* 示範資料：首次開啟時載入，日期都相對於「今天」計算，隨時打開都看得到各種狀態。
+   清空資料後即可開始放自己的任務。 */
+function addDays(n){ var d = today(); d.setDate(d.getDate()+n); return d; }
+function demoTask(o){
+  var due = (o.due === null || o.due === undefined) ? null : addDays(o.due);
+  var r = blankRec();
+  if(o.rec){
+    for(var k in o.rec) r[k] = o.rec[k];
+    if(r.type === "monthly" && due && !o.rec.monthDay) r.monthDay = due.getDate();
+    if(r.type === "yearly" && due){ r.month = due.getMonth()+1; r.day = due.getDate(); }
+    if(r.type === "weekly" && due && !o.rec.weekdays) r.weekdays = [due.getDay()];
+    if(typeof o.rec.leadDays !== "number") r.leadDays = LEAD_DEFAULT[r.type];
+  }
+  var sf = null;
+  if(due && r.leadDays){ var s = new Date(due); s.setDate(s.getDate() - r.leadDays); if(s > today()) sf = iso(s); }
+  return {
+    id: nid(), title: o.title, note: o.note || "",
+    createdAt: Date.now() - (o.age || 10) * DAY,
+    dueDate: due ? iso(due) : null, showFrom: sf,
+    priority: o.prio || "med", tags: o.tag ? [o.tag] : [], recurrence: r,
+    done: !!o.done, completedAt: o.done ? Date.now() - (o.doneAgo || 1) * DAY : null,
+    subtasks: (o.subs || []).map(function(s){
+      var d = s.charAt(0) === "✓"; return { id:nid(), title: d ? s.slice(1) : s, done: d };
+    })
+  };
+}
+function seed(){
+  return [
+    demoTask({ title:"繳交月報", due:-2, prio:"high", tag:"工作", rec:{type:"monthly"},
+               note:"逾期的任務一律置頂", subs:["✓彙整數據","製作圖表","主管審閱"] }),
+    demoTask({ title:"繳信用卡費", due:0, prio:"high", tag:"財務", rec:{type:"monthly"} }),
+    demoTask({ title:"準備週會簡報", due:3, prio:"med", tag:"工作", subs:["✓上週進度","本週重點","待決事項"] }),
+    demoTask({ title:"資源回收", due:1, prio:"low", tag:"家庭", rec:{type:"weekly"} }),
+    demoTask({ title:"續保汽車保險", due:28, prio:"med", tag:"財務", rec:{type:"yearly"},
+               note:"每年任務完成後會先收進「排程中」，到期前 30 天才重新浮上來",
+               subs:["比較保費報價","確認保障內容","完成付款"] }),
+    demoTask({ title:"年度健康檢查", due:75, prio:"med", tag:"健康", rec:{type:"yearly"},
+               subs:["預約時段","前一晚禁食","領取報告"] }),
+    demoTask({ title:"整理年度報稅資料", due:150, prio:"high", tag:"財務", rec:{type:"yearly"},
+               subs:["收集扣繳憑單","整理醫療與保險收據","確認扶養親屬"] }),
+    demoTask({ title:"汽車定期保養", due:45, prio:"med", tag:"其他", rec:{type:"yearly"},
+               note:"這張卡還在「排程中」，點上方的「排程中」膠囊就看得到" }),
+    demoTask({ title:"每天走路 30 分鐘", due:0, prio:"low", tag:"健康", rec:{type:"daily"} }),
+    demoTask({ title:"讀完一本書", due:null, prio:"low", tag:"個人" }),
+    demoTask({ title:"整理照片備份", due:null, prio:"low", tag:"個人", subs:["手機照片匯出","上傳雲端"] }),
+    demoTask({ title:"換季整理衣櫃", due:-3, prio:"low", tag:"家庭", done:true, doneAgo:2,
+               subs:["✓夏季衣物收納","✓捐出舊衣"] })
+  ];
+}
+
+/* ================================================================
+   4. State
+   ================================================================ */
+var DEFAULT_TAGS = ["工作","財務","家庭","健康","個人","其他"];   // 第一次使用時的預設標籤，之後可在「管理標籤」自訂
+var ALL_TAGS = loadTags(DEFAULT_TAGS);
+var _loaded = load();
+var state = {
+  tasks: _loaded || seed(),
+  q:"", tag:"all", prio:"all", sort:"prio", due:"all",
+  expanded:{}, doneOpen:{}, showDone:false, loading:false,
+  selMode:false, sel:{}, surfaced:[], bannerDismissed:false
+};
+if(!_loaded){ save(); setSeen(shift(-4)); }  // 首次載入 Demo：假裝四天沒開，好示範浮現摘要
+
+var undoStack = null;
+syncTagsFromTasks();
+function snapshot(){ undoStack = JSON.stringify({ tasks: state.tasks, tags: ALL_TAGS }); }
+function restore(){
+  if(!undoStack) return;
+  var u = JSON.parse(undoStack); undoStack = null;
+  state.tasks = u.tasks; ALL_TAGS = u.tags;
+  if(state.tag !== "all" && ALL_TAGS.indexOf(state.tag) < 0) state.tag = "all";
+  save(); render();
+  if(!document.getElementById("tagModal").classList.contains("hidden")) renderTagMgr();
+}
+function byId(id){ for(var i=0;i<state.tasks.length;i++){ if(state.tasks[i].id === id) return state.tasks[i]; } return null; }
+function esc(s){ return String(s == null ? "" : s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function short(s){ return s.length > 16 ? s.slice(0,16) + "…" : s; }
+function subDone(t){ return t.subtasks.filter(function(s){ return s.done; }).length; }
+
+/* ================================================================
+   5. Filter / sort
+   ================================================================ */
+function dueBucket(t){
+  if(!t.dueDate) return "none";
+  var d = diffDays(t.dueDate);
+  if(d < 0) return "overdue";
+  if(d === 0) return "today";
+  if(d <= 7) return "week";
+  return "later";
+}
+function matches(t){
+  if(state.prio !== "all" && t.priority !== state.prio) return false;
+  if(state.tag !== "all" && t.tags.indexOf(state.tag) < 0) return false;
+  if(state.due !== "all"){
+    var b = dueBucket(t);
+    if(state.due === "overdue" && b !== "overdue") return false;
+    if(state.due === "today" && b !== "today") return false;
+    if(state.due === "week" && !(b === "today" || b === "week")) return false;
+    if(state.due === "none" && b !== "none") return false;
+  }
+  if(state.q){
+    var q = state.q.toLowerCase();
+    var hay = (t.title + " " + (t.note||"") + " " + t.tags.join(" ") + " " +
+      t.subtasks.map(function(s){ return s.title; }).join(" ")).toLowerCase();
+    if(hay.indexOf(q) < 0) return false;
+  }
+  return true;
+}
+var PRIO_RANK = { high:0, med:1, low:2 };
+function dueKey(t){ return t.dueDate ? diffDays(t.dueDate) : 99999; }
+function isOverdue(t){ return !!t.dueDate && diffDays(t.dueDate) < 0; }
+function sortList(list){
+  var s = state.sort;
+  return list.slice().sort(function(a,b){
+    // 逾期一律置頂（顏色語意不變，只影響先後）
+    var oa = isOverdue(a) ? 0 : 1, ob = isOverdue(b) ? 0 : 1;
+    if(oa !== ob) return oa - ob;
+    if(s === "created") return b.createdAt - a.createdAt;
+    if(s === "oldest") return a.createdAt - b.createdAt;
+    if(s === "due"){
+      if(dueKey(a) !== dueKey(b)) return dueKey(a) - dueKey(b);
+      return PRIO_RANK[a.priority] - PRIO_RANK[b.priority];
+    }
+    // 預設：重要程度優先，同級再看到期日
+    if(PRIO_RANK[a.priority] !== PRIO_RANK[b.priority]) return PRIO_RANK[a.priority] - PRIO_RANK[b.priority];
+    if(dueKey(a) !== dueKey(b)) return dueKey(a) - dueKey(b);
+    return a.createdAt - b.createdAt;
+  });
+}
+
+/* ================================================================
+   6. Render
+   ================================================================ */
+function renderPills(){
+  var all = state.tasks.filter(function(t){ return !t.done; });
+  var act = all.filter(function(t){ return !isDormant(t); });
+  var n = { all:act.length, overdue:0, today:0, week:0, none:0,
+            scheduled: all.length - act.length };
+  act.forEach(function(t){
+    var b = dueBucket(t);
+    if(b === "overdue") n.overdue++;
+    if(b === "today"){ n.today++; n.week++; }
+    else if(b === "week") n.week++;
+    if(b === "none") n.none++;
+  });
+  var defs = [
+    { k:"all", label:"全部", cls:"" },
+    { k:"overdue", label:"逾期", cls:"p-over" },
+    { k:"today", label:"今天", cls:"p-today" },
+    { k:"week", label:"7 天內", cls:"" },
+    { k:"none", label:"無期限", cls:"" },
+    { k:"scheduled", label:"⏳ 排程中", cls:"p-sched" }
+  ];
+  var h = "";
+  defs.forEach(function(d, i){
+    if(i === 1 || i === 5) h += '<span class="pill-sep"></span>';
+    h += '<button class="pill ' + d.cls + (state.due === d.k ? " on" : "") + (n[d.k] === 0 && d.k !== "all" ? " zero" : "") +
+      '" data-due="' + d.k + '">' + d.label + ' <span class="c">' + n[d.k] + '</span></button>';
+  });
+  document.getElementById("pills").innerHTML = h;
+}
+
+function cardHTML(t){
+  var b = dueBucket(t);
+  var dorm = isDormant(t);
+  var isNew = !dorm && isNewlySurfaced(t);
+  var cls = "card p-" + t.priority + (dorm ? " is-sched" : b === "overdue" ? " is-overdue" : b === "today" ? " is-today" : "") +
+            (isNew ? " is-new" : "");
+  var open = !!state.expanded[t.id];
+  var total = t.subtasks.length, dn = subDone(t);
+  var rl = recLabel(t.recurrence);
+  var h = '<div class="' + cls + '" data-id="' + t.id + '">';
+  h += '<div class="card-main">';
+  h += '<button class="tick" data-act="toggle" title="標記完成">✓</button>';
+  h += '<div class="card-body">';
+  h += '<div class="card-title" title="' + esc(t.title) + '">' + esc(t.title) + '</div>';
+  h += '<div class="card-meta">';
+  if(t.dueDate){
+    var d = diffDays(t.dueDate);
+    var dc = d < 0 ? "due-over" : d === 0 ? "due-today" : d <= 3 ? "due-soon" : "";
+    h += '<span class="meta ' + dc + '">📅 ' + esc(fmtDue(t.dueDate)) + '</span>';
+  }else{
+    h += '<span class="meta">📅 未設期限</span>';
+  }
+  h += '<span class="meta">' + (t.priority === "high" ? "🔴" : t.priority === "med" ? "🟠" : "🔵") + PRIO_LABEL[t.priority] + '</span>';
+  if(dorm) h += '<span class="meta sched">⏳ ' + esc(t.showFrom) + ' 起顯示</span>';
+  if(isNew) h += '<span class="meta isnew" title="由週期排程於 ' + esc(t.showFrom) + ' 浮上清單">🆕 新排入</span>';
+  if(rl) h += '<span class="meta rec" title="' + esc(recLabelFull(t.recurrence)) + '">🔁 ' + esc(rl) + '</span>';
+  if(total) h += '<span class="meta">☑ ' + dn + '/' + total + '</span>';
+  t.tags.forEach(function(tg){ h += '<span class="tagpill">' + esc(tg) + '</span>'; });
+  h += '</div>';
+  if(total) h += '<div class="pbar"><i style="width:' + Math.round(dn/total*100) + '%"></i></div>';
+  h += '</div>';
+  h += '<div class="card-side">';
+  if(dorm) h += '<button class="icobtn" data-act="wake" title="立刻顯示在主清單">👁</button>';
+  h += '<button class="icobtn" data-act="edit" title="編輯">✎</button>';
+  h += '<button class="icobtn" data-act="del" title="刪除">🗑</button>';
+  h += '<button class="icobtn" data-act="expand" title="展開細項"><span class="caret' + (open ? " open" : "") + '">›</span></button>';
+  h += '</div></div>';
+
+  if(open){
+    h += '<div class="card-detail">';
+    if(t.note) h += '<div class="detail-note">' + esc(t.note) + '</div>';
+    h += '<div class="detail-label">細項（' + dn + '/' + total + '）</div>';
+    if(total){
+      h += '<div class="sub-list">';
+      t.subtasks.forEach(function(s){
+        h += '<div class="sub-item' + (s.done ? " done" : "") + '" data-sid="' + s.id + '" draggable="true">' +
+          '<span class="sub-grip" title="拖曳調整順序">⠿</span>' +
+          '<button class="sub-tick' + (s.done ? " on" : "") + '" data-act="subtoggle" data-sid="' + s.id + '">✓</button>' +
+          '<span class="sub-text">' + esc(s.title) + '</span>' +
+          '<button class="sub-del" data-act="subdel" data-sid="' + s.id + '" title="刪除細項">✕</button></div>';
+      });
+      h += '</div>';
+    }else{
+      h += '<div class="empty-sub">還沒有細項。拆成幾個能打勾的小步驟，比較容易開始。</div>';
+    }
+    h += '<div class="sub-add"><input type="text" data-act="subinput" maxlength="120" placeholder="＋ 新增細項，Enter 連續加">' +
+         '<button class="btn btn-sm" data-act="subadd">加入</button></div>';
+    h += '<div class="detail-foot"><span class="stamp">登記於 ' + fmtStamp(t.createdAt) + '</span><span>';
+    if(!dorm && !t.done && t.dueDate && diffDays(t.dueDate) > 0)
+      h += '<button class="btn btn-sm" data-act="sleep" title="現在先收起來，接近到期時再自動出現">⏳ 收進排程中</button> ';
+    if(!t.done)
+      h += '<button class="btn btn-sm" data-act="dup" title="以這張為範本另開一張新的（細項重設為未完成）">⧉ 複製一份</button> ';
+    h += '<button class="btn btn-sm" data-act="edit">✎ 編輯</button></span></div>';
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+function render(){
+  renderPills(); renderTagBar();
+  var wall = document.getElementById("wall");
+
+  if(state.loading){
+    wall.innerHTML = '<div class="sk"><i style="width:60%"></i><i style="width:40%"></i></div>' +
+      '<div class="sk"><i style="width:45%"></i><i style="width:66%"></i></div>' +
+      '<div class="sk"><i style="width:54%"></i><i style="width:38%"></i></div>' +
+      '<div class="sk"><i style="width:40%"></i><i style="width:58%"></i></div>' +
+      '<div class="sk"><i style="width:62%"></i><i style="width:44%"></i></div>' +
+      '<div class="sk"><i style="width:48%"></i><i style="width:60%"></i></div>';
+    document.getElementById("doneSec").innerHTML = "";
+    return;
+  }
+
+  var notDone = state.tasks.filter(function(t){ return !t.done; });
+  var schedMode = state.due === "scheduled";
+  var active = notDone.filter(function(t){ return schedMode ? isDormant(t) : !isDormant(t); });
+  var dormant = notDone.filter(isDormant);
+  var filtered = sortList(active.filter(matches));
+  if(schedMode) filtered = filtered.sort(function(a,b){ return (a.showFrom||"") < (b.showFrom||"") ? -1 : 1; });
+  var filtering = state.q || state.tag !== "all" || state.prio !== "all" || state.due !== "all";
+
+  if(state.tasks.length === 0){
+    wall.innerHTML = '<div class="empty"><div class="ic">🗒️</div><h3>還沒有任何待辦事項</h3>' +
+      '<p>從上面那一列輸入第一件事，按 Enter 就建立好了。</p>' +
+      '<button class="btn btn-primary" id="emptyAdd">建立第一件事</button></div>';
+    document.getElementById("doneSec").innerHTML = "";
+    document.getElementById("emptyAdd").onclick = function(){ openModal(null); };
+    return;
+  }
+  if(schedMode){
+    var banner = '<div class="sched-banner">⏳ <b>排程中</b>：這些是週期任務已排定、但還沒到「該出現」時間的下一期。' +
+      '它們不會佔用主清單版面，時間到了會自動浮上來。' +
+      '<button class="btn btn-sm" id="backToAll">回到全部</button></div>';
+    if(filtered.length === 0){
+      wall.innerHTML = banner + '<div class="empty"><div class="ic">⏳</div><h3>目前沒有排程中的事項</h3>' +
+        '<p>完成一個週期任務後，下一期就會先放在這裡等時間到。</p></div>';
+    }else{
+      var hh = banner;
+      filtered.forEach(function(t){ hh += cardHTML(t); });
+      wall.innerHTML = hh;
+    }
+    document.getElementById("backToAll").onclick = function(){ state.due = "all"; render(); };
+    renderDone();
+    document.getElementById("filterNote").classList.add("hidden");
+    return;
+  }
+  // B：浮現摘要橫幅
+  var sb = "";
+  if(state.surfaced.length && !state.bannerDismissed){
+    sb = '<div class="surface-banner"><span class="ic">⏳</span><div class="bd">' +
+      '距離上次開啟，有 <b>' + state.surfaced.length + '</b> 件排程中的事項到時間、已經浮上清單：<ul>';
+    state.surfaced.slice(0,5).forEach(function(t){
+      sb += '<li>' + esc(t.title) + '　<span class="d">' +
+        (t.dueDate ? fmtDate(t.dueDate) + " 到期" : "無期限") + '</span></li>';
+    });
+    if(state.surfaced.length > 5) sb += '<li>…等 ' + state.surfaced.length + ' 件</li>';
+    sb += '</ul></div><button class="btn btn-sm" id="bannerOk">知道了</button></div>';
+  }
+
+  if(filtered.length === 0 && filtering){
+    wall.innerHTML = sb + '<div class="empty"><div class="ic">🔍</div><h3>找不到符合條件的事項</h3>' +
+      '<p>試著放寬關鍵字或取消篩選條件。</p><button class="btn" id="emptyClear">清除所有條件</button></div>';
+  }else if(filtered.length === 0 && dormant.length){
+    wall.innerHTML = sb + '<div class="empty"><div class="ic">🌤️</div><h3>目前沒有到期的事項</h3>' +
+      '<p>還有 <b>' + dormant.length + '</b> 件排在後面，時間到了會自動出現。</p>' +
+      '<button class="btn" id="emptySched">查看排程中</button> <button class="btn btn-primary" id="emptyAdd2">新增一件事</button></div>';
+  }else if(filtered.length === 0){
+    wall.innerHTML = sb + '<div class="empty"><div class="ic">🎉</div><h3>待辦清單清空了</h3>' +
+      '<p>所有事項都已完成，下方可以展開查看紀錄。</p><button class="btn btn-primary" id="emptyAdd2">再加一件事</button></div>';
+  }else{
+    var html = sb;
+    filtered.forEach(function(t){ html += cardHTML(t); });
+    wall.innerHTML = html;
+  }
+  var bo = document.getElementById("bannerOk");
+  if(bo) bo.onclick = function(){
+    state.bannerDismissed = true; setSeen(iso(today())); render();
+  };
+  var ec = document.getElementById("emptyClear"); if(ec) ec.onclick = clearFilters;
+  var ea = document.getElementById("emptyAdd2"); if(ea) ea.onclick = function(){ openModal(null); };
+  var es = document.getElementById("emptySched"); if(es) es.onclick = function(){ state.due = "scheduled"; render(); };
+
+  renderDone();
+  var n = document.getElementById("filterNote");
+  if(!filtering){ n.classList.add("hidden"); }
+  else{
+    n.classList.remove("hidden");
+    document.getElementById("filterNoteTxt").textContent = "篩選中：顯示 " + filtered.length + " / " + active.length + " 筆未完成事項";
+  }
+}
+
+function doneDetailHTML(t){
+  var h = '<div class="done-detail">';
+  if(t.note) h += '<div class="detail-note">' + esc(t.note) + '</div>';
+  if(t.subtasks.length){
+    h += '<div class="detail-label">細項紀錄（' + subDone(t) + '/' + t.subtasks.length + '）</div><div class="sub-list">';
+    t.subtasks.forEach(function(s){
+      h += '<div class="sub-item' + (s.done ? " done" : "") + '">' +
+        '<span class="sub-tick' + (s.done ? " on" : "") + '">✓</span>' +
+        '<span class="sub-text">' + esc(s.title) + '</span></div>';
+    });
+    h += '</div>';
+  }else{
+    h += '<div class="empty-sub">這筆沒有細項紀錄。</div>';
+  }
+  h += '<div class="stamp">登記於 ' + fmtStamp(t.createdAt) +
+       (t.dueDate ? '　·　原定期限 ' + t.dueDate : '') +
+       '　·　完成於 ' + fmtStamp(t.completedAt) + '</div>';
+  h += '<div class="done-actions">' +
+    '<button class="btn btn-sm btn-reuse" data-act="reuse">↻ 再做一次</button>' +
+    '<button class="btn btn-sm" data-act="toggle">↺ 還原為待辦</button>' +
+    '<button class="btn btn-sm" data-act="del">🗑 刪除</button></div>';
+  h += '</div>';
+  return h;
+}
+
+/* 已完成也套用搜尋 / 標籤 / 重要程度（不套用到期日膠囊） */
+function matchesDone(t){
+  if(state.prio !== "all" && t.priority !== state.prio) return false;
+  if(state.tag !== "all" && t.tags.indexOf(state.tag) < 0) return false;
+  if(state.q){
+    var q = state.q.toLowerCase();
+    var hay = (t.title + " " + (t.note||"") + " " + t.tags.join(" ") + " " +
+      t.subtasks.map(function(s){ return s.title; }).join(" ")).toLowerCase();
+    if(hay.indexOf(q) < 0) return false;
+  }
+  return true;
+}
+function renderDone(){
+  var allDone = state.tasks.filter(function(t){ return t.done; })
+    .sort(function(a,b){ return (b.completedAt||0) - (a.completedAt||0); });
+  var searching = !!(state.q || state.tag !== "all" || state.prio !== "all");
+  var done = searching ? allDone.filter(matchesDone) : allDone;
+  var open = state.showDone || !!state.q;   // 打關鍵字時自動展開
+  var el = document.getElementById("doneSec");
+
+  if(!allDone.length){
+    el.innerHTML = '<div class="done-head" style="cursor:default"><span class="t" style="color:var(--text-3)">✓ 已完成</span>' +
+      '<span class="c">0</span><span class="sp"></span></div>' +
+      '<p style="font-size:12.5px;color:var(--text-3);padding:4px 6px 0;margin:0">完成的事項會自動收到這裡，之後可以展開查看細節或「再做一次」。</p>';
+    return;
+  }
+  if(searching && !done.length){
+    el.innerHTML = '<div class="done-head" style="cursor:default"><span class="t" style="color:var(--text-3)">✓ 已完成</span>' +
+      '<span class="c">0 / ' + allDone.length + '</span><span class="sp"></span></div>' +
+      '<p style="font-size:12.5px;color:var(--text-3);padding:4px 6px 0;margin:0">已完成的事項中沒有符合目前條件的項目。</p>';
+    return;
+  }
+  var selCount = done.filter(function(t){ return state.sel[t.id]; }).length;
+  var h = '<button class="done-head" id="doneToggle">' +
+    '<span class="caret' + (open ? " open" : "") + '" style="color:var(--text-3)">›</span>' +
+    '<span class="t">✓ 已完成</span><span class="c">' + (searching ? done.length + " / " + allDone.length : done.length) + '</span>' +
+    (searching ? '<span style="font-size:11.5px;color:var(--accent)">符合搜尋條件</span>' : '') +
+    '<span class="sp"></span>' +
+    (open ? '<span class="btn btn-sm" id="selMode">' + (state.selMode ? "✕ 結束選取" : "☑ 選取") + '</span>' : '') +
+    '</button>';
+  if(open){
+    if(state.selMode){
+      h += '<div class="selbar">' +
+        '<button class="btn btn-sm" data-sel="all">' + (selCount === done.length ? "取消全選" : "全選") + '</button>' +
+        '<span>已選 <b>' + selCount + '</b> / ' + done.length + ' 筆</span><span class="sp"></span>' +
+        '<button class="btn btn-sm' + (selCount ? " btn-danger" : "") + '" data-sel="del"' + (selCount ? "" : " disabled") + '>🗑 刪除選取</button>' +
+        '</div>';
+    }
+    h += '<div class="done-list">';
+    done.forEach(function(t){
+      var op = !!state.doneOpen[t.id], on = !!state.sel[t.id];
+      h += '<div class="done-item' + (op ? " open" : "") + (state.selMode && on ? " sel" : "") + '" data-id="' + t.id + '">';
+      h += '<div class="done-row">';
+      h += state.selMode
+        ? '<button class="selbox' + (on ? " on" : "") + '" data-act="select" title="選取">✓</button>'
+        : '<button class="tick on" data-act="toggle" title="還原為待辦">✓</button>';
+      h += '<span class="tt" title="' + esc(t.title) + '">' + esc(t.title) + '</span>' +
+        (t.subtasks.length ? '<span class="meta">☑ ' + subDone(t) + '/' + t.subtasks.length + '</span>' : '') +
+        (recLabel(t.recurrence) ? '<span class="meta rec">🔁 ' + esc(recLabel(t.recurrence)) + '</span>' : '') +
+        '<span class="dt">' + (t.completedAt ? fmtStamp(t.completedAt) : "") + '</span>';
+      if(!state.selMode){
+        h += '<button class="icobtn" data-act="reuse" title="再做一次">↻</button>' +
+          '<button class="icobtn" data-act="doneexpand" title="展開細節"><span class="caret' + (op ? " open" : "") + '">›</span></button>';
+      }
+      h += '</div>';
+      if(op && !state.selMode) h += doneDetailHTML(t);
+      h += '</div>';
+    });
+    h += '</div>';
+  }
+  el.innerHTML = h;
+
+  document.getElementById("doneToggle").onclick = function(e){
+    if(e.target.id === "selMode"){
+      e.stopPropagation();
+      state.selMode = !state.selMode;
+      if(!state.selMode) state.sel = {};
+      renderDone(); return;
+    }
+    state.showDone = !open;
+    if(!state.showDone){ state.selMode = false; state.sel = {}; }
+    renderDone();
+  };
+  var bar = el.querySelector(".selbar");
+  if(bar) bar.onclick = function(e){
+    var b = e.target.closest("[data-sel]"); if(!b) return;
+    if(b.getAttribute("data-sel") === "all"){
+      var allOn = selCount === done.length;
+      done.forEach(function(t){ if(allOn) delete state.sel[t.id]; else state.sel[t.id] = true; });
+      renderDone(); return;
+    }
+    if(!selCount) return;
+    askConfirm("刪除選取的完成紀錄", "將刪除 " + selCount + " 筆已完成事項（含細項紀錄）。可以用「復原」還原一次。", function(){
+      snapshot();
+      state.tasks = state.tasks.filter(function(t){ return !(t.done && state.sel[t.id]); });
+      state.sel = {}; state.selMode = false;
+      save(); render(); toast("已刪除 " + selCount + " 筆完成紀錄", "復原", restore);
+    });
+  };
+}
+
+function renderTagBar(){
+  var used = {};
+  state.tasks.forEach(function(t){ if(!t.done) t.tags.forEach(function(x){ used[x] = (used[x]||0)+1; }); });
+  var h = '<span class="lb">標籤</span><button class="chip' + (state.tag === "all" ? " on" : "") + '" data-tag="all">全部</button>';
+  ALL_TAGS.forEach(function(t){
+    h += '<button class="chip' + (state.tag === t ? " on" : "") + '" data-tag="' + esc(t) + '">' + esc(t) +
+      (used[t] ? ' <span style="opacity:.6;margin-left:3px">' + used[t] + '</span>' : '') + '</button>';
+  });
+  h += '<button class="chip chip-manage" data-manage="1" title="新增、改名、排序或刪除標籤">⚙ 管理標籤</button>';
+  document.getElementById("tagBar").innerHTML = h;
+}
+function clearFilters(){
+  state.q = ""; state.tag = "all"; state.prio = "all"; state.due = "all";
+  document.getElementById("qInput").value = "";
+  document.getElementById("prioSel").value = "all";
+  document.getElementById("qClear").classList.add("hidden");
+  render();
+}
+
+/* ================================================================
+   7. Toast / confirm
+   ================================================================ */
+function toast(msg, actLabel, actFn){
+  var wrap = document.getElementById("toastWrap");
+  var el = document.createElement("div");
+  el.className = "toast";
+  el.innerHTML = '<span class="msg">' + esc(msg) + '</span>' +
+    (actLabel ? '<button class="act">' + esc(actLabel) + '</button>' : '') + '<button class="x">✕</button>';
+  wrap.appendChild(el);
+  var timer = setTimeout(close, 5200);
+  function close(){ clearTimeout(timer); el.classList.add("out"); setTimeout(function(){ el.remove(); }, 240); }
+  if(actLabel) el.querySelector(".act").onclick = function(){ actFn(); close(); };
+  el.querySelector(".x").onclick = close;
+}
+var cfFn = null;
+function askConfirm(title, body, fn){
+  // 確認框永遠疊在其他 modal 之上
+  document.getElementById("confirmModal").style.zIndex = 75;
+  document.getElementById("cfTitle").textContent = title;
+  document.getElementById("cfBody").textContent = body;
+  cfFn = fn;
+  document.getElementById("confirmModal").classList.remove("hidden");
+}
+document.getElementById("cfCancel").onclick = function(){ document.getElementById("confirmModal").classList.add("hidden"); cfFn = null; };
+document.getElementById("cfOk").onclick = function(){
+  document.getElementById("confirmModal").classList.add("hidden");
+  if(cfFn){ cfFn(); cfFn = null; }
+};
+document.getElementById("confirmModal").onclick = function(e){ if(e.target === this){ this.classList.add("hidden"); cfFn = null; } };
+
+/* ================================================================
+   8. Actions
+   ================================================================ */
+function completeTask(t){
+  snapshot();
+  t.done = true; t.completedAt = Date.now();
+  var msg = "已完成「" + short(t.title) + "」";
+  if(t.recurrence && t.recurrence.type !== "none"){
+    var nd = nextDueFor(t);
+    if(nd){
+      var lead = t.recurrence.leadDays || 0;
+      var sf = shiftFrom(nd, lead);
+      state.tasks.push({
+        id:nid(), title:t.title, note:t.note, createdAt:Date.now(), dueDate:nd,
+        priority:t.priority, tags:t.tags.slice(),
+        recurrence:JSON.parse(JSON.stringify(t.recurrence)),
+        done:false, completedAt:null,
+        showFrom: sf > iso(today()) ? sf : null,
+        subtasks:t.subtasks.map(function(s){ return { id:nid(), title:s.title, done:false }; })
+      });
+      msg = (sf > iso(today()))
+        ? "已完成。下一次是 " + fmtDate(nd) + "，會在 " + sf + " 才出現在清單（先收在「排程中」）"
+        : "已完成，下一次自動排在 " + fmtDate(nd);
+    }else{
+      msg = "已完成，週期已到結束條件，不再產生下一期";
+    }
+  }
+  save(); render(); toast(msg, "復原", restore);
+}
+function toggleTask(id){
+  var t = byId(id); if(!t) return;
+  if(t.done){
+    snapshot(); t.done = false; t.completedAt = null; save(); render();
+    toast("已放回待辦清單", "復原", restore);
+  }else completeTask(t);
+}
+function toggleSub(id, sid){
+  var t = byId(id); if(!t) return;
+  var s = null;
+  t.subtasks.forEach(function(x){ if(x.id === sid) s = x; });
+  if(!s) return;
+  snapshot(); s.done = !s.done; save(); render();
+  if(s.done && t.subtasks.length && subDone(t) === t.subtasks.length && !t.done){
+    toast("「" + short(t.title) + "」的細項全部完成了", "標記主任務完成", function(){ completeTask(byId(id)); });
+  }
+}
+function addSub(id, title){
+  var t = byId(id); if(!t) return;
+  title = title.trim(); if(!title) return;
+  snapshot(); t.subtasks.push({ id:nid(), title:title, done:false }); save(); render();
+}
+function delSub(id, sid){
+  var t = byId(id); if(!t) return;
+  snapshot(); t.subtasks = t.subtasks.filter(function(s){ return s.id !== sid; });
+  save(); render(); toast("已刪除細項", "復原", restore);
+}
+function delTask(id){
+  var t = byId(id); if(!t) return;
+  askConfirm("刪除待辦事項", "確定要刪除「" + t.title + "」" + (t.subtasks.length ? "以及它的 " + t.subtasks.length + " 個細項" : "") + "嗎？", function(){
+    snapshot();
+    state.tasks = state.tasks.filter(function(x){ return x.id !== id; });
+    save(); render(); toast("已刪除「" + short(t.title) + "」", "復原", restore);
+  });
+}
+/* 再做一次：複製為新任務（細項全部重設未完成），開啟編輯讓使用者訂新期限 */
+function reuse(id){
+  var t = byId(id); if(!t) return;
+  openModal(null, null, {
+    title:t.title, note:t.note||"", dueDate:"", priority:t.priority, tags:t.tags.slice(),
+    rec:JSON.parse(JSON.stringify(t.recurrence || blankRec())),
+    subtasks:t.subtasks.map(function(s){ return { id:nid(), title:s.title, done:false }; })
+  });
+  toast("已複製「" + short(t.title) + "」的內容，設定新的期限後儲存即可");
+}
+
+/* 複製一份：以現有任務為範本另開一張，預設不重複、期限為今天 */
+function duplicate(id){
+  var t = byId(id); if(!t) return;
+  openModal(null, null, {
+    title: t.title,
+    note: t.note || "",
+    dueDate: iso(today()),
+    priority: t.priority,
+    tags: t.tags.slice(),
+    rec: blankRec(),                                   // 預設不重複，避免產生第二條週期
+    subtasks: t.subtasks.map(function(s){ return { id:nid(), title:s.title, done:false }; }),
+    modalTitle: "複製一份（不重複，細項已重設）"
+  });
+  toast("已複製「" + short(t.title) + "」，改好期限後儲存即可");
+}
+
+/* ================================================================
+   9. Task modal
+   ================================================================ */
+var draft = null, editingId = null;
+function openModal(id, presetTitle, preset){
+  editingId = id;
+  if(id){
+    var t = byId(id);
+    draft = { title:t.title, note:t.note||"", dueDate:t.dueDate||"", priority:t.priority,
+      tags:t.tags.slice(), rec:JSON.parse(JSON.stringify(t.recurrence || blankRec())),
+      subtasks:t.subtasks.map(function(s){ return { id:s.id, title:s.title, done:s.done }; }) };
+    document.getElementById("mTitle").textContent = "編輯待辦事項";
+  }else if(preset){
+    draft = { title:preset.title, note:preset.note, dueDate:preset.dueDate, priority:preset.priority,
+      tags:preset.tags, rec:preset.rec, subtasks:preset.subtasks };
+    document.getElementById("mTitle").textContent = preset.modalTitle || "再做一次（複製自已完成事項）";
+  }else{
+    draft = { title:presetTitle || "", note:"", dueDate:"", priority:"med", tags:[], rec:blankRec(), subtasks:[] };
+    document.getElementById("mTitle").textContent = "新增待辦事項";
+  }
+  document.getElementById("mName").value = draft.title;
+  document.getElementById("mNote").value = draft.note;
+  document.getElementById("mDue").value = draft.dueDate;
+  document.getElementById("mUntil").value = draft.rec.until || "";
+  document.getElementById("mRecType").value = draft.rec.type;
+  document.getElementById("mName").classList.remove("err");
+  document.getElementById("mNameErr").classList.remove("show");
+  checkDueWarn(); renderPrio(); renderMTags(); renderMSubs(); renderLead(); renderRec();
+  document.getElementById("taskModal").classList.remove("hidden");
+  setTimeout(function(){ document.getElementById("mName").focus(); }, 30);
+}
+function closeModal(){ document.getElementById("taskModal").classList.add("hidden"); draft = null; editingId = null; }
+
+function renderPrio(){
+  var b = document.getElementById("mPrio").children;
+  for(var i=0;i<b.length;i++) b[i].classList.toggle("on", b[i].getAttribute("data-v") === draft.priority);
+}
+function renderMTags(){
+  var h = "";
+  ALL_TAGS.forEach(function(t){
+    h += '<button class="chip' + (draft.tags.indexOf(t) >= 0 ? " on" : "") + '" data-t="' + esc(t) + '">' + esc(t) + '</button>';
+  });
+  h += '<button class="chip chip-manage" data-manage="1">' + (ALL_TAGS.length ? "⚙ 管理標籤" : "＋ 建立標籤") + '</button>';
+  document.getElementById("mTags").innerHTML = h;
+}
+function renderMSubs(){
+  var el = document.getElementById("mSubList");
+  if(!draft.subtasks.length){ el.innerHTML = '<div class="empty-sub">尚未拆解細項（選填）。</div>'; return; }
+  var h = "";
+  draft.subtasks.forEach(function(s, i){
+    h += '<div class="sub-item' + (s.done ? " done" : "") + '" data-mi="' + i + '" draggable="true">' +
+      '<span class="sub-grip" title="拖曳調整順序">⠿</span>' +
+      '<button class="sub-tick' + (s.done ? " on" : "") + '" data-i="' + i + '" data-a="t">✓</button>' +
+      '<span class="sub-text">' + esc(s.title) + '</span>' +
+      '<button class="sub-del" data-i="' + i + '" data-a="d">✕</button></div>';
+  });
+  el.innerHTML = h;
+}
+/* --- 週期面板 --- */
+function fillSelect(el, from, to, fmt, val){
+  var h = "";
+  for(var i=from;i<=to;i++) h += '<option value="' + i + '"' + (i === val ? " selected" : "") + '>' + (fmt ? fmt(i) : i) + '</option>';
+  el.innerHTML = h;
+}
+function renderRec(){
+  var r = draft.rec, t = r.type;
+  document.getElementById("recBox").classList.toggle("hidden", t === "none");
+  document.getElementById("recWeekly").classList.toggle("hidden", t !== "weekly");
+  document.getElementById("recMonthly").classList.toggle("hidden", t !== "monthly");
+  document.getElementById("recYearly").classList.toggle("hidden", t !== "yearly");
+  if(t === "none"){ return; }
+
+  var wd = document.getElementById("wdPick").children;
+  for(var i=0;i<wd.length;i++){
+    var d = +wd[i].getAttribute("data-d");
+    wd[i].classList.toggle("on", r.weekdays.indexOf(d) >= 0);
+  }
+  fillSelect(document.getElementById("mMonthDay"), 1, 31, null, r.monthDay);
+  fillSelect(document.getElementById("mYearMonth"), 1, 12, null, r.month);
+  fillSelect(document.getElementById("mYearDay"), 1, 31, null, r.day);
+
+  var bb = document.getElementById("mBasis").children;
+  for(var j=0;j<bb.length;j++){
+    bb[j].classList.toggle("on", (bb[j].getAttribute("data-v") === "done") === (r.basis === "done"));
+  }
+  document.getElementById("basisHint").textContent = r.basis === "done"
+    ? "以「今天實際完成的日子」往後推算下一期。適合沒有固定行程、晚做了就順延的事（例如換床單）。"
+    : "以「原定期限」往後推算下一期。就算延遲完成，下一期仍落在原本的節奏上（例如每月 5 號繳房租）。";
+
+  // 預覽
+  var fake = { dueDate: draft.dueDate || null, recurrence: r };
+  var nd = nextDueFor(fake);
+  var pv = document.getElementById("recPreview");
+  if(t === "weekly" && r.weekdays.length === 0) pv.textContent = "⚠️ 請至少選一個星期幾。";
+  else if(nd){
+    var sf = shiftFrom(nd, r.leadDays || 0);
+    pv.textContent = "🔁 " + recLabel(r) + "　·　下一次 " + nd + "（" + fmtDate(nd) + "）" +
+      (sf > iso(today()) ? "，" + sf + " 起才出現在清單" : "，會直接出現在清單");
+  }
+  else pv.textContent = "⚠️ 依目前設定不會再產生下一期（可能已超過結束條件）。";
+}
+/* 提前顯示天數：一次性與週期任務都適用 */
+function suggestedLead(){
+  var t = draft.rec.type;
+  return t === "none" ? 7 : LEAD_DEFAULT[t];
+}
+function renderLead(){
+  var el = document.getElementById("mLead"), hint = document.getElementById("leadHint");
+  var lead = draft.rec.leadDays || 0;
+  if(document.activeElement !== el) el.value = lead;
+  var due = draft.dueDate;
+  el.disabled = !due;
+  document.getElementById("mLeadAuto").disabled = !due;
+  el.style.opacity = due ? "" : ".5";
+  if(!due){
+    hint.textContent = "要先設完成期限才能用。沒有期限的事項會一直留在清單上。";
+    return;
+  }
+  if(!lead){
+    hint.textContent = "設 0 = 建立後立刻出現在清單。建議值 " + suggestedLead() + " 天。";
+    return;
+  }
+  var sf = shiftFrom(due, lead);
+  hint.textContent = sf > iso(today())
+    ? "儲存後會先收進「排程中」，" + sf + "（到期前 " + lead + " 天）才浮上清單。"
+    : "到期日已在 " + lead + " 天內，儲存後會直接出現在清單。";
+}
+function checkDueWarn(){
+  var v = document.getElementById("mDue").value;
+  document.getElementById("mDueWarn").classList.toggle("show", !!v && diffDays(v) < 0);
+}
+
+document.getElementById("mPrio").onclick = function(e){
+  var b = e.target.closest("button[data-v]"); if(!b) return;
+  draft.priority = b.getAttribute("data-v"); renderPrio();
+};
+document.getElementById("mTags").onclick = function(e){
+  if(e.target.closest("[data-manage]")){ openTags(true); return; }
+  var b = e.target.closest("button[data-t]"); if(!b) return;
+  var t = b.getAttribute("data-t"), i = draft.tags.indexOf(t);
+  if(i >= 0) draft.tags.splice(i,1); else draft.tags.push(t);
+  renderMTags();
+};
+document.getElementById("mSubList").onclick = function(e){
+  var b = e.target.closest("button[data-i]"); if(!b) return;
+  var i = +b.getAttribute("data-i");
+  if(b.getAttribute("data-a") === "t") draft.subtasks[i].done = !draft.subtasks[i].done;
+  else draft.subtasks.splice(i,1);
+  renderMSubs();
+};
+document.getElementById("mLead").oninput = function(){
+  var v = parseInt(this.value, 10);
+  draft.rec.leadDays = (isNaN(v) || v < 0) ? 0 : Math.min(v, 365);
+  renderLead(); renderRec();
+};
+document.getElementById("mLeadAuto").onclick = function(){
+  draft.rec.leadDays = suggestedLead(); renderLead(); renderRec();
+};
+document.getElementById("mRecType").onchange = function(){
+  var prevSuggest = suggestedLead();
+  draft.rec.type = this.value;
+  if(draft.rec.leadDays === prevSuggest || !draft.rec.leadDays) draft.rec.leadDays = suggestedLead();
+  if(this.value === "weekly" && !draft.rec.weekdays.length){
+    draft.rec.weekdays = [ (draft.dueDate ? fromISO(draft.dueDate) : today()).getDay() ];
+  }
+  if(this.value === "monthly" && draft.dueDate) draft.rec.monthDay = fromISO(draft.dueDate).getDate();
+  if(this.value === "yearly" && draft.dueDate){
+    var d = fromISO(draft.dueDate); draft.rec.month = d.getMonth()+1; draft.rec.day = d.getDate();
+  }
+  renderLead(); renderRec();
+};
+document.getElementById("wdPick").onclick = function(e){
+  var b = e.target.closest("button[data-d]"); if(!b) return;
+  var d = +b.getAttribute("data-d"), i = draft.rec.weekdays.indexOf(d);
+  if(i >= 0) draft.rec.weekdays.splice(i,1); else draft.rec.weekdays.push(d);
+  renderRec();
+};
+document.getElementById("mMonthDay").onchange = function(){ draft.rec.monthDay = +this.value; renderRec(); };
+document.getElementById("mYearMonth").onchange = function(){ draft.rec.month = +this.value; renderRec(); };
+document.getElementById("mYearDay").onchange = function(){ draft.rec.day = +this.value; renderRec(); };
+document.getElementById("mBasis").onclick = function(e){
+  var b = e.target.closest("button[data-v]"); if(!b) return;
+  draft.rec.basis = b.getAttribute("data-v"); renderRec();
+};
+document.getElementById("mUntil").onchange = function(){ draft.rec.until = this.value || null; renderRec(); };
+document.getElementById("mUntilClear").onclick = function(){
+  draft.rec.until = null; document.getElementById("mUntil").value = ""; renderRec();
+};
+function mAddSub(){
+  var inp = document.getElementById("mSubInput"), v = inp.value.trim();
+  if(!v) return;
+  draft.subtasks.push({ id:nid(), title:v, done:false });
+  inp.value = ""; renderMSubs(); inp.focus();
+}
+document.getElementById("mSubAdd").onclick = mAddSub;
+document.getElementById("mSubInput").onkeydown = function(e){ if(e.key === "Enter"){ e.preventDefault(); mAddSub(); } };
+document.getElementById("mDue").onchange = function(){ draft.dueDate = this.value; checkDueWarn(); renderLead(); renderRec(); };
+document.getElementById("mClose").onclick = closeModal;
+document.getElementById("mCancel").onclick = closeModal;
+document.getElementById("taskModal").onclick = function(e){ if(e.target === this) closeModal(); };
+document.getElementById("mName").oninput = function(){
+  if(this.value.trim()){ this.classList.remove("err"); document.getElementById("mNameErr").classList.remove("show"); }
+};
+document.getElementById("mSave").onclick = function(){
+  var name = document.getElementById("mName").value.trim();
+  if(!name){
+    document.getElementById("mName").classList.add("err");
+    document.getElementById("mNameErr").classList.add("show");
+    document.getElementById("mName").focus();
+    return;
+  }
+  if(draft.rec.type === "weekly" && !draft.rec.weekdays.length){
+    toast("每週重複至少要選一個星期幾"); return;
+  }
+  snapshot();
+  var payload = {
+    title:name,
+    note:document.getElementById("mNote").value.trim(),
+    dueDate:document.getElementById("mDue").value || null,
+    priority:draft.priority,
+    tags:draft.tags.slice(),
+    recurrence:draft.rec,
+    subtasks:draft.subtasks
+  };
+  // 週期任務若離到期日還很遠，直接收進「排程中」，不佔用清單版面
+  function autoSleep(t){
+    if(!t.dueDate) return null;
+    var lead = (t.recurrence && t.recurrence.leadDays) || 0;
+    if(!lead) return null;
+    var sf = shiftFrom(t.dueDate, lead);
+    return sf > iso(today()) ? sf : null;
+  }
+  if(editingId){
+    var t = byId(editingId);
+    var wasDorm = isDormant(t);
+    for(var k in payload) t[k] = payload[k];
+    t.showFrom = autoSleep(t);
+    if(t.showFrom && (!t.dueDate || t.showFrom > t.dueDate)) t.showFrom = null;
+    save(); closeModal(); render();
+    toast("已更新「" + short(name) + "」" + (t.showFrom && !wasDorm ? "，已收進排程中（" + t.showFrom + " 起顯示）" : ""), "復原", restore);
+  }else{
+    payload.id = nid(); payload.createdAt = Date.now(); payload.done = false;
+    payload.completedAt = null;
+    payload.showFrom = autoSleep(payload);
+    state.tasks.push(payload);
+    save(); closeModal(); render();
+    if(payload.showFrom){
+      toast("已新增「" + short(name) + "」，收進排程中，" + payload.showFrom + " 起才會出現", "改成立刻顯示", function(){
+        snapshot(); byId(payload.id).showFrom = null; save(); render();
+      });
+    }else toast("已新增「" + short(name) + "」", "復原", restore);
+  }
+};
+
+/* ================================================================
+   10. Wiring
+   ================================================================ */
+document.getElementById("wall").addEventListener("click", function(e){
+  var b = e.target.closest("[data-act]"); if(!b) return;
+  var card = e.target.closest("[data-id]"); if(!card) return;
+  var id = card.getAttribute("data-id"), act = b.getAttribute("data-act");
+  if(act === "toggle"){
+    if(!byId(id).done){ card.classList.add("removing"); setTimeout(function(){ toggleTask(id); }, 180); }
+    else toggleTask(id);
+  }
+  else if(act === "expand"){ state.expanded[id] = !state.expanded[id]; render(); }
+  else if(act === "dup"){ duplicate(id); }
+  else if(act === "sleep"){
+    var st = byId(id); if(!st || !st.dueDate) return;
+    var lead = (st.recurrence && st.recurrence.leadDays) ? st.recurrence.leadDays : 7;
+    var sf = shiftFrom(st.dueDate, lead);
+    if(sf <= iso(today())) sf = shift(1);           // 至少收到明天
+    snapshot(); st.showFrom = sf; save(); render();
+    toast("已收進排程中，" + sf + " 起才會出現在清單", "復原", restore);
+  }
+  else if(act === "wake"){
+    snapshot(); byId(id).showFrom = null; save(); render();
+    toast("已提前顯示在主清單", "復原", restore);
+  }
+  else if(act === "edit"){ openModal(id); }
+  else if(act === "del"){ delTask(id); }
+  else if(act === "subtoggle"){ toggleSub(id, b.getAttribute("data-sid")); }
+  else if(act === "subdel"){ delSub(id, b.getAttribute("data-sid")); }
+  else if(act === "subadd"){ addSub(id, card.querySelector('[data-act="subinput"]').value); refocusSub(id); }
+});
+/* ================================================================
+   細項拖曳排序（卡片內與 Modal 內共用同一套邏輯）
+   ================================================================ */
+var dragSub = null;
+function clearDropMarks(){
+  Array.prototype.forEach.call(document.querySelectorAll(".drop-before,.drop-after"), function(el){
+    el.classList.remove("drop-before", "drop-after");
+  });
+}
+function moveInArray(arr, from, to){
+  var x = arr.splice(from, 1)[0];
+  arr.splice(to, 0, x);
+}
+function computeTarget(arr, fromIdx, toIdx, after){
+  var insert = after ? toIdx + 1 : toIdx;
+  if(fromIdx < insert) insert--;
+  return insert;
+}
+function bindSubDrag(container, opts){
+  container.addEventListener("dragstart", function(e){
+    var it = e.target.closest(opts.sel); if(!it) return;
+    dragSub = opts.pick(it);
+    if(!dragSub) return;
+    dragSub.scope = opts.scope;
+    it.classList.add("sdragging");
+    try{ e.dataTransfer.effectAllowed = "move"; e.dataTransfer.setData("text/plain", "subtask"); }catch(err){}
+    e.stopPropagation();
+  });
+  container.addEventListener("dragover", function(e){
+    if(!dragSub || dragSub.scope !== opts.scope) return;
+    var it = e.target.closest(opts.sel); if(!it) return;
+    var info = opts.pick(it); if(!info) return;
+    if(opts.scope === "card" && info.taskId !== dragSub.taskId) return;   // 只能在同一張卡內排序
+    e.preventDefault();
+    try{ e.dataTransfer.dropEffect = "move"; }catch(err){}
+    var r = it.getBoundingClientRect();
+    var after = (e.clientY - r.top) > r.height / 2;
+    clearDropMarks();
+    it.classList.add(after ? "drop-after" : "drop-before");
+  });
+  container.addEventListener("drop", function(e){
+    if(!dragSub || dragSub.scope !== opts.scope) return;
+    var it = e.target.closest(opts.sel); if(!it) return;
+    var info = opts.pick(it); if(!info) return;
+    if(opts.scope === "card" && info.taskId !== dragSub.taskId) return;
+    e.preventDefault(); e.stopPropagation();
+    var r = it.getBoundingClientRect();
+    var after = (e.clientY - r.top) > r.height / 2;
+    clearDropMarks();
+    opts.commit(dragSub, info, after);
+    dragSub = null;
+  });
+  container.addEventListener("dragend", function(){
+    dragSub = null; clearDropMarks();
+    Array.prototype.forEach.call(document.querySelectorAll(".sdragging"), function(el){
+      el.classList.remove("sdragging");
+    });
+  });
+}
+/* 卡片內 */
+bindSubDrag(document.getElementById("wall"), {
+  scope:"card",
+  sel:".sub-item[data-sid]",
+  pick:function(it){
+    var card = it.closest("[data-id]"); if(!card) return null;
+    return { taskId:card.getAttribute("data-id"), sid:it.getAttribute("data-sid") };
+  },
+  commit:function(src, tgt, after){
+    var t = byId(src.taskId); if(!t) return;
+    var ids = t.subtasks.map(function(s){ return s.id; });
+    var from = ids.indexOf(src.sid), to = ids.indexOf(tgt.sid);
+    if(from < 0 || to < 0) return;
+    var insert = computeTarget(t.subtasks, from, to, after);
+    if(insert === from) { render(); return; }
+    snapshot();
+    moveInArray(t.subtasks, from, insert);
+    save(); render();
+    toast("已調整細項順序", "復原", restore);
+  }
+});
+/* Modal 內（操作的是 draft，不落地） */
+bindSubDrag(document.getElementById("mSubList"), {
+  scope:"modal",
+  sel:".sub-item[data-mi]",
+  pick:function(it){ return { idx: +it.getAttribute("data-mi") }; },
+  commit:function(src, tgt, after){
+    if(!draft) return;
+    var insert = computeTarget(draft.subtasks, src.idx, tgt.idx, after);
+    if(insert === src.idx) return;
+    moveInArray(draft.subtasks, src.idx, insert);
+    renderMSubs();
+  }
+});
+
+/* ================================================================
+   外觀主題：自動 / 淺色 / 深色
+   ================================================================ */
+var THEME_KEY = "todo.theme";   // 與資料版本脫鉤，換版不會忘記你的外觀設定
+var THEMES = [
+  { v:"auto",  label:"🌗 自動", tip:"跟隨系統設定" },
+  { v:"light", label:"☀️ 淺色", tip:"固定使用淺色" },
+  { v:"dark",  label:"🌙 深色", tip:"固定使用深色" }
+];
+function getTheme(){
+  try{ return localStorage.getItem(THEME_KEY) || "auto"; }catch(e){ return "auto"; }
+}
+function applyTheme(v){
+  try{ localStorage.setItem(THEME_KEY, v); }catch(e){}
+  if(v === "auto") document.documentElement.removeAttribute("data-theme");
+  else document.documentElement.setAttribute("data-theme", v);
+  var d = THEMES.filter(function(x){ return x.v === v; })[0] || THEMES[0];
+  var btn = document.getElementById("btnTheme");
+  btn.textContent = d.label;
+  btn.title = "外觀：" + d.tip + "（點一下切換）";
+}
+document.getElementById("btnTheme").onclick = function(){
+  var cur = getTheme();
+  var i = 0;
+  THEMES.forEach(function(x, n){ if(x.v === cur) i = n; });
+  var next = THEMES[(i + 1) % THEMES.length];
+  applyTheme(next.v);
+  toast("外觀：" + next.label.replace(/^\S+\s/, "") + "（" + next.tip + "）");
+};
+
+function refocusSub(id){
+  setTimeout(function(){
+    var f = document.querySelector('[data-id="' + id + '"] [data-act="subinput"]');
+    if(f) f.focus();
+  }, 10);
+}
+document.getElementById("wall").addEventListener("keydown", function(e){
+  if(e.key !== "Enter") return;
+  var inp = e.target.closest('[data-act="subinput"]'); if(!inp) return;
+  var id = e.target.closest("[data-id]").getAttribute("data-id");
+  addSub(id, inp.value); refocusSub(id);
+});
+/* 雙擊卡片 = 展開／收合細項（編輯請用卡片上的 ✎） */
+document.getElementById("wall").addEventListener("dblclick", function(e){
+  if(e.target.closest("button, input, textarea, select, a")) return;
+  var main = e.target.closest(".card-main"); if(!main) return;
+  var card = e.target.closest("[data-id]"); if(!card) return;
+  var id = card.getAttribute("data-id");
+  state.expanded[id] = !state.expanded[id];
+  render();
+});
+
+document.getElementById("doneSec").addEventListener("click", function(e){
+  var b = e.target.closest("[data-act]"); if(!b) return;
+  var row = e.target.closest("[data-id]"); if(!row) return;
+  var id = row.getAttribute("data-id"), act = b.getAttribute("data-act");
+  if(act === "select"){
+    if(state.sel[id]) delete state.sel[id]; else state.sel[id] = true;
+    renderDone(); return;
+  }
+  if(act === "toggle") toggleTask(id);
+  else if(act === "del") delTask(id);
+  else if(act === "reuse") reuse(id);
+  else if(act === "doneexpand"){ state.doneOpen[id] = !state.doneOpen[id]; renderDone(); }
+});
+
+document.getElementById("pills").addEventListener("click", function(e){
+  var b = e.target.closest("[data-due]"); if(!b) return;
+  var v = b.getAttribute("data-due");
+  state.due = (state.due === v && v !== "all") ? "all" : v;
+  render();
+});
+document.getElementById("tagBar").addEventListener("click", function(e){
+  if(e.target.closest("[data-manage]")){ openTags(false); return; }
+  var b = e.target.closest("[data-tag]"); if(!b) return;
+  state.tag = b.getAttribute("data-tag"); render();
+});
+
+var qaInput = document.getElementById("qaInput");
+qaInput.addEventListener("keydown", function(e){
+  if(e.key !== "Enter") return;
+  var v = this.value.trim();
+  if(!v){ toast("請先輸入標題再按 Enter"); return; }
+  snapshot();
+  state.tasks.push({ id:nid(), title:v, note:"", createdAt:Date.now(), dueDate:null,
+    priority:"med", tags:[], recurrence:blankRec(), done:false, completedAt:null, showFrom:null, subtasks:[] });
+  this.value = ""; save(); render();
+  var newId = state.tasks[state.tasks.length-1].id;
+  toast("已加入「" + short(v) + "」（未設期限）", "設定期限", function(){ openModal(newId); });
+});
+document.getElementById("qaDetail").onclick = function(){
+  var v = qaInput.value.trim(); qaInput.value = ""; openModal(null, v);
+};
+document.getElementById("fab").onclick = function(){ openModal(null); };
+
+var qInput = document.getElementById("qInput");
+qInput.addEventListener("input", function(){
+  state.q = this.value.trim();
+  document.getElementById("qClear").classList.toggle("hidden", !this.value);
+  render();
+});
+document.getElementById("qClear").onclick = function(){
+  qInput.value = ""; state.q = ""; this.classList.add("hidden"); render(); qInput.focus();
+};
+document.getElementById("prioSel").onchange = function(){ state.prio = this.value; render(); };
+document.getElementById("sortSel").onchange = function(){ state.sort = this.value; render(); };
+document.getElementById("btnClearFilter").onclick = clearFilters;
+
+document.getElementById("bkWipe").onclick = function(){
+  var total = state.tasks.length;
+  if(!total){ toast("目前沒有任何資料可以清空"); return; }
+  var undone = state.tasks.filter(function(t){ return !t.done; }).length;
+  closeData();
+  askConfirm("清空所有資料",
+    "將刪除全部 " + total + " 筆事項（未完成 " + undone + " 筆、已完成 " + (total-undone) +
+    " 筆），包含它們的細項與週期設定。這個動作只能用「復原」退回一次，離開頁面後就救不回來了。",
+    function(){
+      snapshot();
+      state.tasks = [];
+      state.expanded = {}; state.doneOpen = {}; state.sel = {}; state.selMode = false;
+      state.showDone = false; state.surfaced = []; state.bannerDismissed = true;
+      clearFilters(); save(); render();
+      toast("已清空 " + total + " 筆資料", "復原", restore);
+    });
+};
+
+/* ================================================================
+   標籤管理
+   ================================================================ */
+function syncTagsFromTasks(){
+  state.tasks.forEach(function(t){
+    (t.tags || []).forEach(function(x){ if(x && ALL_TAGS.indexOf(x) < 0) ALL_TAGS.push(x); });
+  });
+}
+function tagUse(name){ return state.tasks.filter(function(t){ return t.tags.indexOf(name) >= 0; }).length; }
+var tagFromTask = false;
+function openTags(fromTask){
+  tagFromTask = !!fromTask;
+  renderTagMgr();
+  document.getElementById("tagModal").classList.remove("hidden");
+  document.getElementById("tmNew").value = "";
+  if(!ALL_TAGS.length) document.getElementById("tmNew").focus();
+}
+function closeTags(){
+  var a = document.activeElement; if(a && a.blur) a.blur();   // 先讓改名欄位送出
+  document.getElementById("tagModal").classList.add("hidden");
+  render();
+  if(tagFromTask && draft) renderMTags();
+}
+function renderTagMgr(){
+  var h = "";
+  if(!ALL_TAGS.length) h = '<p class="tm-empty">還沒有任何標籤，從下面新增一個吧。</p>';
+  ALL_TAGS.forEach(function(t, i){
+    var n = tagUse(t);
+    h += '<div class="tm-row">' +
+      '<div class="tm-move">' +
+        '<button class="icobtn" data-mv="-1" data-i="' + i + '" title="往前"' + (i === 0 ? " disabled" : "") + '>▲</button>' +
+        '<button class="icobtn" data-mv="1" data-i="' + i + '" title="往後"' + (i === ALL_TAGS.length-1 ? " disabled" : "") + '>▼</button>' +
+      '</div>' +
+      '<input class="inp" data-name="' + i + '" maxlength="' + TAG_MAX + '" value="' + esc(t) + '" aria-label="標籤名稱">' +
+      '<span class="tm-count">' + (n ? "用於 " + n + " 筆" : "未使用") + '</span>' +
+      '<button class="icobtn" data-del="' + i + '" title="刪除這個標籤">🗑</button>' +
+    '</div>';
+  });
+  document.getElementById("tmList").innerHTML = h;
+}
+function addTag(){
+  var inp = document.getElementById("tmNew");
+  var v = cleanTags([inp.value])[0];
+  if(!v){ inp.focus(); return; }
+  if(ALL_TAGS.indexOf(v) >= 0){ toast("已經有「" + v + "」這個標籤了"); inp.select(); return; }
+  ALL_TAGS.push(v);
+  if(tagFromTask && draft && draft.tags.indexOf(v) < 0) draft.tags.push(v);   // 從編輯視窗建立的，直接幫這筆勾上
+  save(); inp.value = ""; renderTagMgr(); inp.focus();
+}
+function renameTag(i, raw){
+  var old = ALL_TAGS[i]; if(old === undefined) return;
+  var v = String(raw).trim().slice(0, TAG_MAX);
+  if(v === old){ return; }
+  if(!v){ toast("標籤名稱不能空白"); renderTagMgr(); return; }
+  if(ALL_TAGS.indexOf(v) >= 0){ toast("已經有「" + v + "」這個標籤了"); renderTagMgr(); return; }
+  snapshot();
+  var n = 0;
+  ALL_TAGS[i] = v;
+  state.tasks.forEach(function(t){ var k = t.tags.indexOf(old); if(k >= 0){ t.tags[k] = v; n++; } });
+  if(draft){ var k = draft.tags.indexOf(old); if(k >= 0) draft.tags[k] = v; }
+  if(state.tag === old) state.tag = v;
+  save(); renderTagMgr();
+  toast("已改名為「" + v + "」" + (n ? "，套用到 " + n + " 筆事項" : ""), "復原", restore);
+}
+function deleteTag(i){
+  var name = ALL_TAGS[i]; if(name === undefined) return;
+  var n = tagUse(name);
+  function go(){
+    snapshot();
+    ALL_TAGS.splice(i, 1);
+    state.tasks.forEach(function(t){ t.tags = t.tags.filter(function(x){ return x !== name; }); });
+    if(draft) draft.tags = draft.tags.filter(function(x){ return x !== name; });
+    if(state.tag === name) state.tag = "all";
+    save(); renderTagMgr();
+    toast("已刪除標籤「" + name + "」", "復原", restore);
+  }
+  if(n) askConfirm("刪除標籤", "「" + name + "」目前用在 " + n + " 筆事項上（含已完成）。刪除後這些事項只會拿掉這個標籤，事項本身不受影響。", go);
+  else go();
+}
+document.getElementById("tmList").addEventListener("click", function(e){
+  var mv = e.target.closest("[data-mv]");
+  if(mv){
+    var i = +mv.getAttribute("data-i"), j = i + (+mv.getAttribute("data-mv"));
+    if(j < 0 || j >= ALL_TAGS.length) return;
+    var tmp = ALL_TAGS[i]; ALL_TAGS[i] = ALL_TAGS[j]; ALL_TAGS[j] = tmp;
+    save(); renderTagMgr();
+    var btn = document.querySelector('#tmList [data-mv="' + mv.getAttribute("data-mv") + '"][data-i="' + j + '"]');
+    if(btn && !btn.disabled) btn.focus();
+    return;
+  }
+  var d = e.target.closest("[data-del]");
+  if(d) deleteTag(+d.getAttribute("data-del"));
+});
+document.getElementById("tmList").addEventListener("change", function(e){
+  if(e.target.hasAttribute("data-name")) renameTag(+e.target.getAttribute("data-name"), e.target.value);
+});
+document.getElementById("tmList").addEventListener("keydown", function(e){
+  if(e.key === "Enter" && !e.isComposing && e.target.hasAttribute("data-name")){ e.preventDefault(); e.target.blur(); }
+});
+document.getElementById("tmNew").addEventListener("keydown", function(e){
+  if(e.key === "Enter" && !e.isComposing){ e.preventDefault(); addTag(); }
+});
+document.getElementById("tmAdd").onclick = addTag;
+document.getElementById("tmClose").onclick = closeTags;
+document.getElementById("tmOk").onclick = closeTags;
+document.getElementById("tagModal").onclick = function(e){ if(e.target === this) closeTags(); };
+
+document.addEventListener("keydown", function(e){
+  var tag = document.activeElement.tagName;
+  if(e.key === "Escape"){
+    if(!document.getElementById("confirmModal").classList.contains("hidden")){
+      document.getElementById("confirmModal").classList.add("hidden"); cfFn = null;
+    }
+    else if(!document.getElementById("tagModal").classList.contains("hidden")) closeTags();
+    else if(!document.getElementById("taskModal").classList.contains("hidden")) closeModal();
+    else if(!document.getElementById("dataModal").classList.contains("hidden")) closeData();
+    else if(!document.getElementById("confirmModal").classList.contains("hidden")){
+      document.getElementById("confirmModal").classList.add("hidden"); cfFn = null;
+    }
+  }
+  if(tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+  if(e.key === "/"){ e.preventDefault(); qInput.focus(); }
+  if(e.key === "n" && !e.metaKey && !e.ctrlKey){ e.preventDefault(); openModal(null); }
+});
+
+/* ================================================================
+   11. 資料與備份
+   ================================================================ */
+var SCHEMA_VERSION = 5;
+var FSA = (typeof window.showSaveFilePicker === "function");
+var backupHandle = null, backupTimer = null, bkState = "none", bkErr = "";
+var LAST_BK_KEY = KEY + ".lastBackup";
+function getLastBackup(){ try{ return localStorage.getItem(LAST_BK_KEY); }catch(e){ return null; } }
+function setLastBackup(v){ try{ localStorage.setItem(LAST_BK_KEY, v); }catch(e){} }
+
+/* --- IndexedDB：存放檔案 handle（localStorage 存不了） --- */
+function idb(fn){
+  return new Promise(function(res, rej){
+    var r = indexedDB.open("todoBackupStore", 1);
+    r.onupgradeneeded = function(){ r.result.createObjectStore("kv"); };
+    r.onerror = function(){ rej(r.error); };
+    r.onsuccess = function(){
+      var db = r.result, tx = db.transaction("kv", "readwrite"), st = tx.objectStore("kv");
+      var out = fn(st);
+      tx.oncomplete = function(){ db.close(); res(out && out.result !== undefined ? out.result : out); };
+      tx.onerror = function(){ db.close(); rej(tx.error); };
+    };
+  });
+}
+function idbSet(k, v){ return idb(function(st){ st.put(v, k); }); }
+function idbGet(k){ return idb(function(st){ return st.get(k); }); }
+function idbDel(k){ return idb(function(st){ st.delete(k); }); }
+
+/* --- 匯出內容 --- */
+function exportPayload(){
+  return {
+    app: "todo-mvp-prototype",
+    schema: SCHEMA_VERSION,
+    exportedAt: new Date().toISOString(),
+    taskCount: state.tasks.length,
+    lastSeen: getSeen(),
+    tags: ALL_TAGS.slice(),
+    tasks: state.tasks
+  };
+}
+function payloadText(){ return JSON.stringify(exportPayload(), null, 2); }
+function stamp(){
+  var d = new Date();
+  return d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate()) + "-" + pad(d.getHours()) + pad(d.getMinutes());
+}
+
+/* --- 自動備份 --- */
+function setBk(s, err){ bkState = s; bkErr = err || ""; paintBkDot(); if(!document.getElementById("dataModal").classList.contains("hidden")) renderData(); }
+function paintBkDot(){
+  var d = document.getElementById("bkDot");
+  d.className = "bk-dot" + (bkState === "linked" ? " ok" : bkState === "needperm" ? " warn" : bkState === "error" ? " err" : "");
+}
+function handleUsable(h){
+  return h && typeof h.queryPermission === "function" && typeof h.createWritable === "function";
+}
+function writeBackup(){
+  if(!backupHandle) return Promise.resolve();
+  if(!handleUsable(backupHandle)){
+    backupHandle = null; idbDel("backupHandle");
+    setBk("error", "備份檔的連結已失效（瀏覽器或環境不支援），請重新選擇一次備份檔位置");
+    return Promise.resolve();
+  }
+  return backupHandle.queryPermission({ mode:"readwrite" }).then(function(p){
+    if(p !== "granted"){ setBk("needperm"); return; }
+    return backupHandle.createWritable().then(function(w){
+      return w.write(payloadText()).then(function(){ return w.close(); });
+    }).then(function(){
+      setLastBackup(new Date().toISOString()); setBk("linked");
+    });
+  }).catch(function(e){ setBk("error", e && e.message ? e.message : String(e)); });
+}
+function scheduleBackup(){
+  if(!backupHandle) return;
+  clearTimeout(backupTimer);
+  backupTimer = setTimeout(writeBackup, 800);
+}
+function linkBackup(){
+  if(!FSA){ toast("這個瀏覽器不支援直接寫入檔案，請改用手動匯出"); return; }
+  window.showSaveFilePicker({
+    suggestedName: "todo-backup.json",
+    types: [{ description:"待辦備份", accept:{ "application/json":[".json"] } }]
+  }).then(function(h){
+    backupHandle = h;
+    return idbSet("backupHandle", h);
+  }).then(function(){
+    return writeBackup();
+  }).then(function(){
+    toast("已連結備份檔，之後每次異動都會自動寫入");
+  }).catch(function(e){
+    if(e && e.name === "AbortError") return;
+    setBk("error", e && e.message ? e.message : String(e));
+  });
+}
+function unlinkBackup(){
+  backupHandle = null; idbDel("backupHandle");
+  setBk("none"); toast("已解除連結，之後不再自動寫入備份檔");
+}
+function regrant(){
+  if(!backupHandle) return;
+  if(typeof backupHandle.requestPermission !== "function"){
+    backupHandle = null; idbDel("backupHandle");
+    setBk("none"); toast("備份檔連結已失效，請在「💾 資料」重新選擇一次"); return;
+  }
+  backupHandle.requestPermission({ mode:"readwrite" }).then(function(p){
+    if(p === "granted"){ writeBackup().then(function(){ toast("已重新授權，備份恢復"); }); }
+    else toast("沒有取得寫入權限，備份仍為暫停狀態");
+  });
+}
+
+/* --- 手動匯出 --- */
+function downloadText(text, filename, mime){
+  var blob = new Blob([text], { type: mime || "application/json;charset=utf-8" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); }, 0);
+}
+function exportJSON(){
+  var name = "todo-backup-" + stamp() + ".json";
+  if(FSA){
+    window.showSaveFilePicker({ suggestedName:name, types:[{ description:"待辦備份", accept:{ "application/json":[".json"] } }] })
+      .then(function(h){ return h.createWritable(); })
+      .then(function(w){ return w.write(payloadText()).then(function(){ return w.close(); }); })
+      .then(function(){ toast("已匯出備份檔"); })
+      .catch(function(e){ if(!e || e.name !== "AbortError") downloadText(payloadText(), name); });
+  }else downloadText(payloadText(), name);
+}
+
+/* --- CSV --- */
+function csvCell(v){
+  var s = v == null ? "" : String(v);
+  return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+}
+function buildCSV(){
+  var head = ["標題","備註","登記時間","完成期限","重要程度","標籤","重複週期","提前顯示天數",
+              "狀態","完成時間","排程顯示日","細項總數","已完成細項","細項清單"];
+  var rows = [head];
+  state.tasks.slice().sort(function(a,b){ return a.createdAt - b.createdAt; }).forEach(function(t){
+    rows.push([
+      t.title, t.note || "", fmtStamp(t.createdAt), t.dueDate || "",
+      PRIO_LABEL[t.priority], t.tags.join("、"),
+      recLabel(t.recurrence) || "不重複",
+      (t.recurrence && t.recurrence.type !== "none") ? (t.recurrence.leadDays || 0) : "",
+      t.done ? "已完成" : (isDormant(t) ? "排程中" : (isOverdue(t) ? "逾期" : "待辦")),
+      t.completedAt ? fmtStamp(t.completedAt) : "",
+      isDormant(t) ? t.showFrom : "",
+      t.subtasks.length, subDone(t),
+      t.subtasks.map(function(s){ return (s.done ? "[v] " : "[ ] ") + s.title; }).join(" / ")
+    ]);
+  });
+  return "﻿" + rows.map(function(r){ return r.map(csvCell).join(","); }).join("\r\n");
+}
+function exportCSV(){
+  downloadText(buildCSV(), "todo-" + stamp() + ".csv", "text/csv;charset=utf-8");
+  toast("已匯出 CSV");
+}
+
+/* --- 匯入 --- */
+function validatePayload(obj){
+  if(!obj || typeof obj !== "object") return "檔案不是有效的 JSON 物件";
+  var arr = Array.isArray(obj) ? obj : obj.tasks;
+  if(!Array.isArray(arr)) return "找不到 tasks 陣列，這可能不是本工具匯出的備份";
+  for(var i=0;i<arr.length;i++){
+    if(!arr[i] || typeof arr[i].title !== "string") return "第 " + (i+1) + " 筆缺少標題欄位";
+  }
+  return null;
+}
+function normalizeTasks(arr){
+  return arr.map(function(t){
+    var r = t.recurrence && typeof t.recurrence === "object" ? t.recurrence : blankRec();
+    if(typeof r.leadDays !== "number") r.leadDays = LEAD_DEFAULT[r.type] || 0;
+    if(!Array.isArray(r.weekdays)) r.weekdays = blankRec().weekdays;
+    if(!r.basis) r.basis = "due";
+    return {
+      id: t.id || nid(),
+      title: String(t.title),
+      note: t.note || "",
+      createdAt: t.createdAt || Date.now(),
+      dueDate: t.dueDate || null,
+      priority: (t.priority === "high" || t.priority === "low") ? t.priority : (t.priority === "med" ? "med" : "med"),
+      tags: Array.isArray(t.tags) ? t.tags : [],
+      recurrence: r,
+      done: !!t.done,
+      completedAt: t.completedAt || null,
+      showFrom: t.showFrom || null,
+      subtasks: Array.isArray(t.subtasks)
+        ? t.subtasks.filter(function(s){ return s && typeof s.title === "string"; })
+            .map(function(s){ return { id:s.id || nid(), title:s.title, done:!!s.done }; })
+        : []
+    };
+  });
+}
+function applyImport(obj, label){
+  var err = validatePayload(obj);
+  if(err){ toast("匯入失敗：" + err); return; }
+  var arr = Array.isArray(obj) ? obj : obj.tasks;
+  closeData();
+  askConfirm("從備份還原", "將以「" + label + "」的 " + arr.length + " 筆資料，整份取代目前的 " +
+    state.tasks.length + " 筆。可以用「復原」還原一次。", function(){
+    snapshot();
+    state.tasks = normalizeTasks(arr);
+    if(!Array.isArray(obj) && Array.isArray(obj.tags)) ALL_TAGS = cleanTags(obj.tags);
+    syncTagsFromTasks();
+    state.expanded = {}; state.doneOpen = {}; state.sel = {}; state.selMode = false;
+    if(obj.lastSeen) setSeen(obj.lastSeen);
+    state.surfaced = []; state.bannerDismissed = true;
+    save(); clearFilters(); render();
+    toast("已還原 " + state.tasks.length + " 筆資料", "復原", restore);
+  });
+}
+function importJSON(){
+  if(FSA && typeof window.showOpenFilePicker === "function"){
+    window.showOpenFilePicker({ types:[{ description:"待辦備份", accept:{ "application/json":[".json"] } }], multiple:false })
+      .then(function(hs){ return hs[0].getFile(); })
+      .then(function(f){ return f.text().then(function(txt){ return { txt:txt, name:f.name }; }); })
+      .then(function(o){
+        var parsed; try{ parsed = JSON.parse(o.txt); }catch(e){ toast("匯入失敗：JSON 格式錯誤"); return; }
+        applyImport(parsed, o.name);
+      })
+      .catch(function(e){ if(!e || e.name !== "AbortError") document.getElementById("bkFile").click(); });
+  }else document.getElementById("bkFile").click();
+}
+document.getElementById("bkFile").onchange = function(){
+  var f = this.files && this.files[0]; if(!f) return;
+  var fr = new FileReader();
+  fr.onload = function(){
+    var parsed; try{ parsed = JSON.parse(fr.result); }catch(e){ toast("匯入失敗：JSON 格式錯誤"); return; }
+    applyImport(parsed, f.name);
+  };
+  fr.readAsText(f);
+  this.value = "";
+};
+
+/* --- 資料面板 --- */
+function renderData(){
+  var st = document.getElementById("bkStatus"), ac = document.getElementById("bkActions"), nt = document.getElementById("bkNote");
+  var last = getLastBackup();
+  var lastTxt = last ? fmtStamp(new Date(last).getTime()) : "尚未備份";
+  if(!FSA){
+    st.className = "bk-status warn";
+    st.textContent = "⚠️ 這個瀏覽器不支援直接寫入檔案（Chrome / Edge 桌面版才有）。請改用下面的手動匯出。";
+    ac.innerHTML = "";
+  }else if(bkState === "linked"){
+    st.className = "bk-status ok";
+    st.textContent = "✓ 已連結：" + (backupHandle ? backupHandle.name : "") + "　·　最後備份 " + lastTxt;
+    ac.innerHTML = '<button class="btn btn-sm" data-bk="now">立即備份一次</button>' +
+                   '<button class="btn btn-sm" data-bk="relink">改綁其他檔案</button>' +
+                   '<button class="btn btn-sm" data-bk="unlink">解除連結</button>';
+  }else if(bkState === "needperm"){
+    st.className = "bk-status warn";
+    st.textContent = "⚠️ 備份檔已連結，但瀏覽器需要你再授權一次寫入權限（重開瀏覽器後會這樣）。";
+    ac.innerHTML = '<button class="btn btn-sm btn-primary" data-bk="regrant">重新授權</button>' +
+                   '<button class="btn btn-sm" data-bk="unlink">解除連結</button>';
+  }else if(bkState === "error"){
+    st.className = "bk-status err";
+    st.textContent = "✕ 備份寫入失敗：" + bkErr;
+    ac.innerHTML = '<button class="btn btn-sm btn-primary" data-bk="now">重試</button>' +
+                   '<button class="btn btn-sm" data-bk="relink">改綁其他檔案</button>' +
+                   '<button class="btn btn-sm" data-bk="unlink">解除連結</button>';
+  }else{
+    st.className = "bk-status";
+    st.textContent = "尚未連結備份檔——目前資料只存在這個瀏覽器裡。";
+    ac.innerHTML = '<button class="btn btn-sm btn-primary" data-bk="link">選擇備份檔位置…</button>';
+  }
+  nt.textContent = FSA
+    ? "寫入時機：每次異動後約 0.8 秒內。權限只需授權一次，但瀏覽器重開後可能要再確認一次。"
+    : "";
+  document.getElementById("bkWhere").innerHTML =
+    "瀏覽器的 localStorage，鍵值 <code>" + KEY + "</code>，目前 <b>" + state.tasks.length + "</b> 筆任務（約 " +
+    Math.round(JSON.stringify(state.tasks).length / 1024) + " KB）。<br>" +
+    "資料綁定<b>這個瀏覽器</b>而非這個檔案：換瀏覽器、用無痕視窗、或清除瀏覽資料都會看不到，所以才需要上面的備份。";
+  paintBkDot();
+}
+document.getElementById("bkActions").onclick = function(e){
+  var b = e.target.closest("[data-bk]"); if(!b) return;
+  var a = b.getAttribute("data-bk");
+  if(a === "link" || a === "relink") linkBackup();
+  else if(a === "unlink") unlinkBackup();
+  else if(a === "regrant") regrant();
+  else if(a === "now") writeBackup().then(function(){ if(bkState === "linked") toast("已備份"); });
+};
+document.getElementById("btnData").onclick = function(){
+  renderData(); document.getElementById("dataModal").classList.remove("hidden");
+};
+function closeData(){ document.getElementById("dataModal").classList.add("hidden"); }
+document.getElementById("dClose").onclick = closeData;
+document.getElementById("dOk").onclick = closeData;
+document.getElementById("dataModal").onclick = function(e){ if(e.target === this) closeData(); };
+document.getElementById("bkExport").onclick = exportJSON;
+document.getElementById("bkImport").onclick = importJSON;
+document.getElementById("bkCsv").onclick = exportCSV;
+
+/* ================================================================
+   12. Boot
+   ================================================================ */
+(function boot(){
+  var d = new Date();
+  document.getElementById("todayLabel").textContent =
+    "· " + (d.getMonth()+1) + " 月 " + d.getDate() + " 日 星期" + WD[d.getDay()];
+  applyTheme(getTheme());
+  var seen = getSeen();
+  if(!seen){ setSeen(iso(today())); state.surfaced = []; }
+  else state.surfaced = surfacedSince(seen);
+  state.loading = true; render();
+
+  // 還原上次連結的備份檔（權限可能需要重新確認）
+  if(FSA){
+    idbGet("backupHandle").then(function(h){
+      if(!h) { setBk("none"); return; }
+      if(!handleUsable(h)){ idbDel("backupHandle"); setBk("none"); return; }
+      backupHandle = h;
+      return h.queryPermission({ mode:"readwrite" }).then(function(p){
+        if(p === "granted"){ setBk("linked"); }
+        else{
+          setBk("needperm");
+          toast("備份檔「" + h.name + "」需要重新授權寫入", "重新授權", regrant);
+        }
+      });
+    }).catch(function(){ setBk("none"); });
+  }
+
+  setTimeout(function(){
+    state.loading = false; render();
+    if(!storageOK) toast("此環境無法使用瀏覽器儲存，資料只會保留在本次開啟期間。");
+  }, 600);
+})();
+</script>
+</body>
+</html>
