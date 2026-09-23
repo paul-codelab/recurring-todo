@@ -1,5 +1,7 @@
 # 我的待辦事項
 
+**中文** | [English](README.en.md)
+
 一個檔案就能用的個人待辦清單。不用安裝、不用註冊、不用架伺服器，用瀏覽器打開 `index.html` 就能開始。
 
 特別適合**週期性的例行工作**，尤其是一年只做一兩次、每次都有固定步驟的事，例如年度報稅、保險續約、健康檢查、各種定期申報。
@@ -58,7 +60,7 @@
 
 ## 使用方式
 
-**線上試用**：開啟本專案的 GitHub Pages 網址（見右側 About）。
+**線上試用**：https://paul-codelab.github.io/recurring-todo/
 
 **本機使用**：下載 `index.html`，用 Chrome 或 Edge 直接開啟即可。
 
@@ -71,6 +73,10 @@
 - 單一 HTML 檔，純 JavaScript，無任何外部相依套件或 CDN
 - 自動備份使用 File System Access API（Chrome／Edge），檔案權限存在 IndexedDB
 - 其他瀏覽器仍可使用，只是沒有自動備份，改用手動匯出
+
+## 意見回饋
+
+有建議或發現問題，歡迎到 [Issues](https://github.com/paul-codelab/recurring-todo/issues) 留言。
 
 ## 授權
 
